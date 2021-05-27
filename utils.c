@@ -32,3 +32,11 @@ int	ft_is_identifier(char c)
 	else
 		return (0);
 }
+
+int	ft_is_conversion(char c)
+{
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
+		return (1);
+	else
+		return (0);
+}

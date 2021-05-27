@@ -12,7 +12,7 @@ t_list ft_flags(void)
 	return (flags);
 }
 
-t_list	ft_parser(char *format, t_list flags)
+t_list	ft_parser(char *format, t_list flags, va_list args)
 {
 	format++;
 	while (*format == '-' || *format == '0')
@@ -28,7 +28,7 @@ t_list	ft_parser(char *format, t_list flags)
 		flags.width = flags.width * 10 + *format - '0';
 		format++;
 	}
-	while (*format == '.')
+	if (*format == '.')
 	{
 		flags.dot = 0;
 		format++;
@@ -41,28 +41,49 @@ t_list	ft_parser(char *format, t_list flags)
 	return (flags);
 }
 
-int	ft_manager(char *format, t_list flags, va_list args)
+void	ft_int_print(t_list flags, va_list args)
 {
+	int	n;
 
+	n = va_arg(args, int);
+}
+
+void	ft_printer(char *format, t_list flags, va_list args)
+{
+	format++;
+	while (ft_is_identifier(*format))
+		format++;
+	if (*format == 'i')
+		ft_int_print(flags, args);
+}
+
+t_list	ft_manager(char *format, t_list flags, va_list args)
+{
+	while (*format)
+	{
+		if (*format == '%' && *(format+1) != '%')
+			flags = ft_parser(format, flags, args);
+	}
+	return (flags);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int	count;
 	va_list args;
 	t_list flags;
 	char *format;
 
 	flags = ft_flags();
 	format = ft_strdup(str);
-	flags = ft_parser(format, flags);
-	count = ft_manager()
-	printf("width: %d\nminus: %d\nzero: %d\ndot: %d\n", flags.width, flags.minus, flags.zero, flags.dot);
+
+	va_start(args, str);
+	flags = ft_manager(format, flags, args);
 	va_end(args);
-	return (count);
+	free(format);
+	return (flags.count);
 }
 
 int	main(void)
 {
-	ft_printf("%-02147483647.i\n", 100);
+	ft_printf("%i\n", 100);
 }
