@@ -1,5 +1,7 @@
 #include "libftprintf.h"
 
+
+// Initializes flag structure.
 t_list ft_flags(void)
 {
 	t_list flags;
@@ -12,6 +14,7 @@ t_list ft_flags(void)
 	return (flags);
 }
 
+// Parses through format string to fill flags structure with information.
 t_list	ft_parser(char *format, t_list flags, va_list args)
 {
 	format++;
@@ -41,49 +44,46 @@ t_list	ft_parser(char *format, t_list flags, va_list args)
 	return (flags);
 }
 
-void	ft_int_print(t_list flags, va_list args)
+int	ft_manager(char *format, va_list args)
 {
-	int	n;
+	int	count;
+	t_list	flags;
 
-	n = va_arg(args, int);
-}
+	flags = ft_flags();
+	count = 0;
 
-void	ft_printer(char *format, t_list flags, va_list args)
-{
-	format++;
-	while (ft_is_identifier(*format))
-		format++;
-	if (*format == 'i')
-		ft_int_print(flags, args);
-}
-
-t_list	ft_manager(char *format, t_list flags, va_list args)
-{
 	while (*format)
 	{
-		if (*format == '%' && *(format+1) != '%')
+		if (*format == '%')
+		{
 			flags = ft_parser(format, flags, args);
+			ft_printer(format, flags, args);
+			count += flags.count;
+			ft_skip(format); // skip through format string until next info
+		}
+		ft_putchar('*format');
+		format++;
 	}
-	return (flags);
+	return (count);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list args;
-	t_list flags;
-	char *format;
+	int		count;
+	char 	*format;
 
-	flags = ft_flags();
 	format = ft_strdup(str);
+	count = 0;
 
 	va_start(args, str);
-	flags = ft_manager(format, flags, args);
+	count = ft_manager(format, args);
 	va_end(args);
 	free(format);
-	return (flags.count);
+	return (count);
 }
 
 int	main(void)
 {
-	ft_printf("%i\n", 100);
+	ft_printf("%-10.230i\n", 100);
 }
