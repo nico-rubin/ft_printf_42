@@ -46,12 +46,8 @@ t_list	ft_parser(char *format, t_list flags, va_list args)
 
 void	ft_printer(char *format, t_list flags, va_list args)
 {
-	int	n;
-
-	n = 0;
-
-	n = va_arg(args, int);
-	printf("%i", n);
+	if (*format == 'i')
+		ft_print_int(flags, args);
 }
 
 int	ft_manager(char *format, va_list args)
@@ -99,5 +95,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%-10.230i\n", 100);
+	ft_printf("%.0i\n", 0);
+	printf("%.0i\n", 0);
 }

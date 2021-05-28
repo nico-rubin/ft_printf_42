@@ -32,7 +32,7 @@ int main(void)
     // %
     printf("%%\n");
 
-    // WIDTH and FLAGS
+    printf("\n\nWIDTH AND FLAGS\n\n"); // WIDTH and FLAGS
     printf("%10d\n", 5); // In no case does a non-existant or small field width cause truncation of a field.
 
     printf("%*d\n", 10, 5); // A field width may be '*' instead of a digit string in which case an argument supplies the width.

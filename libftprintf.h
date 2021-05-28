@@ -27,5 +27,9 @@ int		ft_is_identifier(char c);
 int	ft_is_conversion(char c);
 void	ft_integer_printer(char *format, t_list flags, va_list args);
 void	ft_skip(char *str);
+char	*ft_itoa(int n);
+void	ft_if_neg(int *size, long *nbr);
+int	ft_count_digits(int n);
+void	ft_print_int(t_list flags, va_list args);
 
 # endif
