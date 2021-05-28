@@ -95,6 +95,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%.0i\n", 0);
-	printf("%.0i\n", 0);
+	ft_printf("%10i\n", 0);
+	printf("%10i\n", 0);
 }
