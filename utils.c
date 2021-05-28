@@ -40,3 +40,9 @@ int	ft_is_conversion(char c)
 	else
 		return (0);
 }
+
+void	ft_skip(char *str)
+{
+	if (ft_is_identifier(*str))
+		str++;
+}

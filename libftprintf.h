@@ -26,5 +26,6 @@ size_t	ft_strlen(const char *s);
 int		ft_is_identifier(char c);
 int	ft_is_conversion(char c);
 void	ft_integer_printer(char *format, t_list flags, va_list args);
+void	ft_skip(char *str);
 
 # endif

@@ -44,6 +44,16 @@ t_list	ft_parser(char *format, t_list flags, va_list args)
 	return (flags);
 }
 
+void	ft_printer(char *format, t_list flags, va_list args)
+{
+	int	n;
+
+	n = 0;
+
+	n = va_arg(args, int);
+	printf("%i", n);
+}
+
 int	ft_manager(char *format, va_list args)
 {
 	int	count;
@@ -57,12 +67,16 @@ int	ft_manager(char *format, va_list args)
 		if (*format == '%')
 		{
 			flags = ft_parser(format, flags, args);
+			while(ft_is_identifier(*format) || *format == '%')
+				format++;
 			ft_printer(format, flags, args);
-			count += flags.count;
-			ft_skip(format); // skip through format string until next info
+			//count += flags.count;
 		}
-		ft_putchar('*format');
-		format++;
+		else
+		//{
+			format++;
+			//count++;
+		//}
 	}
 	return (count);
 }
