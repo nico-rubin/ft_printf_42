@@ -9,7 +9,6 @@ void	ft_print_int(t_list flags, va_list args)
 	n = va_arg(args, int);
 	str = ft_itoa(n);
 
-/*
 	// width
 	// The width argument is a non-negative decimal integer that controls the minimum number of 
 	// characters that are output. If the number of characters in the output value is less than
@@ -63,8 +62,6 @@ void	ft_print_int(t_list flags, va_list args)
 		else
 			printf("%i\n", n);
 	}
-}
-*/ 
 int k;
 int y; 
 int z;
@@ -106,7 +103,6 @@ if (flags.width > 0 && flags.dot > -1)
 	}
 }
 }
-
 // IF flags.width AND flags.precison EXIST
 
 	// IF flags.width > flags.precison

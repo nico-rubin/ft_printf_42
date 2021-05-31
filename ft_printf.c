@@ -95,6 +95,13 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
+	ft_printf("%4i", 12);
+	printf("%4i\n", 12);
+
+	ft_printf("%.4i", 12);
+	printf("%.4i\n", 12);
+
+
 	// str < width && width > dot && dot > str
 	ft_printf("%5.4i", 12);
 	printf("\n%5.4i\n", 12);
