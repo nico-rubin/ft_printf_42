@@ -95,6 +95,41 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%10i\n", 0);
-	printf("%10i\n", 0);
-}
+	// str < width && width > dot && dot > str
+	ft_printf("%5.4i", 12);
+	printf("\n%5.4i\n", 12);
+	
+	// str < width && width < dot && dot > str
+	ft_printf("%4.5i", 120);
+	printf("\n%4.5i\n", 120);
+
+	// str > width && width > dot && dot > str
+	ft_printf("%1.4i", 120);
+	printf("\n%1.4i\n", 120);
+
+	// str > width && width < dot && dot > str
+	ft_printf("%3.5i", 1200);
+	printf("\n%3.5i\n", 1200);
+
+	// str < width && width < dot && dot > str
+	ft_printf("%5.3i", 12000);
+	printf("\n%5.3i\n", 12000);
+}	
+// if there is a precision and a width
+	// if width is bigger than precision
+		// if width > ft_strlen
+			// if right align
+				// print the spaces
+				// print the precision
+				// print the number
+			// if left aling
+				// print the precision
+				// print the number
+				// print the spaces
+		// i width < ft_strlen
+			// print 
+	// if width is smaller than precision
+		// print the precision
+		// print the number
+
+// IF STRLEN IS BIGGER THAN PRECISION USE STRLEN OTHERWISE OPPOSSITE
