@@ -1,6 +1,7 @@
 #include "libftprintf.h"
 
-// Correctly positions the '-' symbol when 'n' is negative there is a precison.
+// Correctly positions the '-' symbol when 'n' is negative and there is a
+// precison.
 void	ft_sort(char *ret)
 {
 	*ret = '-';
