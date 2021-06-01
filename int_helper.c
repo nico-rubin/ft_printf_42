@@ -33,140 +33,78 @@ char *ft_str_with_precision(int n, char *str, t_list flags)
 	return (ret);
 }
 
+char	*ft_str_right_width(char *str, t_list flags)
+{
+	int diff;
+	char *ret;
+	int	i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(str);
+	diff = flags.width - len;
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	if (flags.zero == 1)
+		while (i < diff)
+			ret[i++] = '0';
+	else
+		while (i < diff)
+			ret[i++] = ' ';
+	while (i < diff + len)
+		ret[i++] = *(str++);
+	ret[i] = '\0';
+	return (ret);
+}
+
+char	*ft_str_left_width(char *str, t_list flags)
+{
+	int	diff;
+	char	*ret;
+	int	i;
+	int	len;
+
+	i = 0;
+	len = ft_strlen(str);
+	diff = flags.width - len;
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	while (i < len)
+		ret[i++] = *(str++);
+	while (i < diff + len)
+		ret[i++] = ' ';
+	ret[i] = '\0';
+	return (ret);
+}
+
 void	ft_print_int(t_list flags, va_list args)
 {
 	int	n;
 	int i;
 	char *str;
-	char *tmp;
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
 
-	int j;
+	// RULES
+	if (flags.dot > -1 && flags.zero == 1)
+		flags.zero = 0;
 
+	if (flags.zero == 1 && flags.minus == 1)
+		flags.minus = 0;
+
+	//if (flags.precision == 0 && n == 0)
+	//	str = "";
+
+	// PRECISION <= LENGTH
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
-	{
-		tmp = ft_str_with_precision(n, str, flags);
-		free(str);
-		str = tmp;
-		free(tmp);
-	}
+		str = ft_str_with_precision(n, str, flags);
 
-	if (flags.width > 0)
-	{
-		if (flags.width > ft_strlen(str))
-		{
-			i = flags.width - ft_strlen(str);
-			if (flags.minus == 0)
-			{
-				while (i--)
-						printf(" ");
-				printf("%s", str);
-			}
-			else
-			{
-				printf("%s", str);
-				while (i--)
-				{
-					printf(" ");
-				}
-			}
-		}
-		else
-			printf("%s", str);
-	}
+	// WIDTH <= LENGTH && RIGHT ALIGN
+	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
+		str = ft_str_right_width(str, flags);
 
-	else
-		printf("%s", str);
+	// WIDTH <= LENGHT && LEFT ALIGN
+	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
+		str = ft_str_left_width(str, flags);
+
+	printf("%s", str);
 }
-/*
-	// precision
-	// The precision specifies the minimum number of digits to be printed. If the number
-	// of digits in the argument is less than precision, the output value is padded on the
-	// left with zeros. The value isn't truncated when the number of digits exceeds precision.
-	int j;
-
-	if (flags.width == 0 && flags.dot > -1)
-	{
-		j = flags.dot - ft_strlen(str);
-		if (ft_strlen(str) < flags.dot)
-		{
-			while (j--)
-				printf("0");
-			printf("%i\n", n);
-		}
-		else
-			printf("%i\n", n);
-	}
-int k;
-int y;
-int z;
-
-if (flags.width > 0 && flags.dot > -1)
-{
-	if (flags.width > flags.dot)
-	{
-		if (flags.dot > ft_strlen(str))
-		{
-			k = flags.width - flags.dot;
-			while (k--)
-				printf(" ");
-			y = flags.dot - ft_strlen(str);
-			while (y--)
-				printf("0");
-			printf("%i", n);
-		}
-		if (flags.dot <= ft_strlen(str))
-		{
-			k = flags.width - ft_strlen(str);
-			while (k--)
-				printf(" ");
-			printf("%i", n);
-		}
-	}
-
-	if (flags.width <= flags.dot)
-	{
-		if (flags.dot > ft_strlen(str))
-		{
-			k = flags.dot - ft_strlen(str);
-			while (k--)
-				printf("0");
-			printf("%i", n);
-		}
-		if (flags.dot <= ft_strlen(str))
-			printf("%i", n);
-	}
-}
-}
-// IF flags.width AND flags.precison EXIST
-
-	// IF flags.width > flags.precison
-
-		// IF flags.precision > ft_strlen(str)
-
-			// PRINT flags.width
-
-			// PRINT flags.precison
-
-			// PRINT str
-
-		// IF flags.precison <= ft_strlen(str)
-
-			// PRINT flags.width
-
-			// PRINT str
-
-	// IF flags.width <= flags.precison
-
-		// IF flags.precison > ft_strlen(str)
-
-			// PRINT flags.precison
-
-			// PRINT str
-
-		// IF flags.precison <= ft_stlren(str)
-
-			// PRINT str
-*/
