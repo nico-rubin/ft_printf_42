@@ -11,6 +11,18 @@ void	ft_sort(char *ret)
 	*ret = '0';
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// OYE OYE HERE IS THE SOLUTION DO THIS FOR EVERYTHING /////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+void	ft_exceptions(t_list *flags)
+{
+	if (flags->dot > -1 && flags->zero == 1)
+		flags->zero = 0;
+
+	if (flags->zero == 1 && flags->minus == 1)
+		flags->minus = 0;
+}
+
 // Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
 char *ft_str_with_precision(int n, char *str, t_list flags)
 {
@@ -92,12 +104,13 @@ int		ft_print_int(t_list flags, va_list args)
 	str = ft_itoa(n);
 
 	// RULES
-	if (flags.dot > -1 && flags.zero == 1)
-		flags.zero = 0;
+	//if (flags.dot > -1 && flags.zero == 1)
+	//	flags.zero = 0;
 
-	if (flags.zero == 1 && flags.minus == 1)
-		flags.minus = 0;
+	//if (flags.zero == 1 && flags.minus == 1)
+	//	flags.minus = 0;
 
+	ft_exceptions(&flags);
 	//if (flags.dot == 0 && n == 0)
 	//	str = "";
 
