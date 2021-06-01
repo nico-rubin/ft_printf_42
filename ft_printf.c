@@ -9,39 +9,38 @@ t_list ft_flags(void)
 	flags.minus = 0;
 	flags.zero = 0;
 	flags.dot = -1;
-	//flags.count = 0;
+	flags.count = 0;
 
 	return (flags);
 }
 
 // Parses through format string to fill flags structure with information.
-t_list	ft_parser(char *format, t_list flags, va_list args)
+void	ft_parser(char *format, t_list *flags, va_list args)
 {
 	format++;
 	while (*format == '-' || *format == '0')
 	{
 		if (*format == '-')
-			flags.minus = 1;
+			flags->minus = 1;
 		if (*format == '0')
-			flags.zero = 1;
+			flags->zero = 1;
 		format++;
 	}
 	while (*format >= '0' && *format <= '9')
 	{
-		flags.width = flags.width * 10 + *format - '0';
+		flags->width = flags->width * 10 + *format - '0';
 		format++;
 	}
 	if (*format == '.')
 	{
-		flags.dot = 0;
+		flags->dot = 0;
 		format++;
 	}
 	while (*format >= '0' && *format <= '9')
 	{
-		flags.dot = flags.dot * 10 + *format - '0';
+		flags->dot = flags->dot * 10 + *format - '0';
 		format++;
 	}
-	return (flags);
 }
 
 // Calls the correct depending or conversion type.
@@ -69,11 +68,10 @@ int	ft_manager(char *format, va_list args)
 		}
 		else if (*format == '%')
 		{
-			flags = ft_parser(format, flags, args);
+			ft_parser(format, &flags, args);
 			while(ft_is_identifier(*format) || *format == '%')
 				format++;
 			count += ft_printer(format, flags, args);
-			flags = ft_flags();
 			format++;
 		}
 		else
@@ -109,13 +107,13 @@ int	main(void)
 	//i = ft_printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
 //	printf("\n%i\n", i);
 	//i = printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
-	//printf("\n%i\n", i);
+	printf("%10.0i\n", 0);
 
-	ft_printf("%010.3i\n", -12);
-
+	//ft_printf("%-10i\n", 12);
+	//ft_printf("%10.0i\n", 0);
 	//printf("\n%.4i\n", -12);
 
-	ft_printf("%10.4i", -99);
+	//ft_printf("%10.4i", -99);
 //	printf("\n%-5.2i\n\n", -12);
 
 /*

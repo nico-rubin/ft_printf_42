@@ -18,7 +18,7 @@ typedef struct s_list
 	int	minus;
 	int	zero;
 	int	dot;
-	//int	count;
+	int	count;
 }				t_list;
 
 char	*ft_strdup(const char *s1);
