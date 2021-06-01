@@ -97,7 +97,7 @@ int		ft_print_int(t_list flags, va_list args)
 	if (flags.zero == 1 && flags.minus == 1)
 		flags.minus = 0;
 
-	//if (flags.precision == 0 && n == 0)
+	//if (flags.dot == 0 && n == 0)
 	//	str = "";
 
 	// PRECISION <= LENGTH
