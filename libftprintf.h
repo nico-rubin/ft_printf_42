@@ -18,7 +18,7 @@ typedef struct s_list
 	int	minus;
 	int	zero;
 	int	dot;
-	int	count;
+	//int	count;
 }				t_list;
 
 char	*ft_strdup(const char *s1);
@@ -30,6 +30,9 @@ void	ft_skip(char *str);
 char	*ft_itoa(int n);
 void	ft_if_neg(int *size, long *nbr);
 int	ft_count_digits(int n);
-void	ft_print_int(t_list flags, va_list args);
+int	ft_print_int(t_list flags, va_list args);
+void	ft_putchar_n(char c, int *count);
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
 
 # endif

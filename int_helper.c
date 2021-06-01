@@ -1,6 +1,6 @@
-// Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
 #include "libftprintf.h"
 
+// Correctly positions the '-' symbol when 'n' is negative there is a precison.
 void	ft_sort(char *ret)
 {
 	*ret = '-';
@@ -10,6 +10,7 @@ void	ft_sort(char *ret)
 	*ret = '0';
 }
 
+// Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
 char *ft_str_with_precision(int n, char *str, t_list flags)
 {
 	int diff;
@@ -33,6 +34,8 @@ char *ft_str_with_precision(int n, char *str, t_list flags)
 	return (ret);
 }
 
+// Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
+// the result is right aligned.
 char	*ft_str_right_width(char *str, t_list flags)
 {
 	int diff;
@@ -56,6 +59,8 @@ char	*ft_str_right_width(char *str, t_list flags)
 	return (ret);
 }
 
+// Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
+// the result is left aligned.
 char	*ft_str_left_width(char *str, t_list flags)
 {
 	int	diff;
@@ -75,7 +80,8 @@ char	*ft_str_left_width(char *str, t_list flags)
 	return (ret);
 }
 
-void	ft_print_int(t_list flags, va_list args)
+// Main int printing function.
+int		ft_print_int(t_list flags, va_list args)
 {
 	int	n;
 	int i;
@@ -106,5 +112,6 @@ void	ft_print_int(t_list flags, va_list args)
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
 		str = ft_str_left_width(str, flags);
 
-	printf("%s", str);
+	ft_putstr(str);
+	return (ft_strlen(str));
 }
