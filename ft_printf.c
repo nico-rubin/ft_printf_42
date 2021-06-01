@@ -82,6 +82,7 @@ int	ft_manager(char *format, va_list args)
 			format++;
 		}
 	}
+	flags = ft_flags();
 	return (count);
 }
 
@@ -105,19 +106,20 @@ int	main(void)
 {
 	int i;
 
-	i = ft_printf("%%%-5.3i Hello%% %i", 12, 10);
-	printf("\n%i\n", i);
-	i = printf("%%%-5.3i Hello%% %i", 12, 10);
-	printf("\n%i\n", i);
+	//i = ft_printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
+//	printf("\n%i\n", i);
+	//i = printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
+	//printf("\n%i\n", i);
+
+	ft_printf("%5.6i\n", -12);
+
+	//printf("\n%.4i\n", -12);
+
+	ft_printf("%10.4i", -99);
+//	printf("\n%-5.2i\n\n", -12);
+
 /*
-	ft_printf("%.4i", -12);
-	printf("\n%.4i\n\n", -12);
-
-
 	// str < width && width > dot && dot > str
-	ft_printf("%-5.2i", -12);
-	printf("\n%-5.2i\n\n", -12);
-
 	// str < width && width < dot && dot > str
 	ft_printf("%4.5i", -120);
 	printf("\n%4.5i\n\n", -120);
