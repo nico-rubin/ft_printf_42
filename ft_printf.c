@@ -146,6 +146,6 @@ int	main(void)
 	//printf("| count: %i\n\n", ft_printf("output: |%3.0x", 0));
 	//printf("| count: %i\n\n", printf("output: |%3.0x", 0));
 
-	printf("| count: %i\n\n", ft_printf("output: |%3X", -12435));
-	printf("| count: %i\n\n", printf("output: |%3X", -12435));
+	printf("| count: %i\n\n", ft_printf("output: |%010i ||| %-40s ||| %3.4c ||| %10.5x ||| %20.15X |||", 1234, "Hello there Noa", 'N', -6785, -6785));
+	printf("| count: %i\n\n", printf("output: |%010i ||| %-40s ||| %3.4c ||| %10.5x ||| %20.15X |||", 1234, "Hello there Noa", 'N', -6785, -6785));
 }
