@@ -116,3 +116,16 @@ void	ft_putstr(char *str)
 	while(*str)
 		ft_putchar(*(str++));
 }
+
+char	*ft_char_to_str(char c)
+{
+	char	*ret;
+	size_t	len;
+
+	ret = (char *)malloc(sizeof(*ret) * (2));
+	if (!ret)
+		return (NULL);
+	ret[0] = c;
+	ret[1] = '\0';
+	return (ret);
+}

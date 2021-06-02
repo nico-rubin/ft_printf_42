@@ -12,7 +12,7 @@ void	ft_sort(char *ret)
 }
 
 // Handles exceptional flag cases.
-void	ft_exceptions(t_list *flags, int n)
+void	ft_int_exceptions(t_list *flags, int n)
 {
 	if (flags->dot > -1 && flags->zero == 1)
 		flags->zero = 0;
@@ -35,7 +35,7 @@ void	ft_exceptions(t_list *flags, int n)
 }
 
 // Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
-char *ft_str_with_precision(int n, char *str, t_list flags)
+char *ft_int_with_precision(int n, char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -60,7 +60,7 @@ char *ft_str_with_precision(int n, char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is right aligned.
-char	*ft_str_right_width(char *str, t_list flags)
+char	*ft_int_right_width(char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -85,7 +85,7 @@ char	*ft_str_right_width(char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is left aligned.
-char	*ft_str_left_width(char *str, t_list flags)
+char	*ft_int_left_width(char *str, t_list flags)
 {
 	int	diff;
 	char	*ret;
@@ -113,16 +113,16 @@ int		ft_print_int(t_list flags, va_list args)
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
-	ft_exceptions(&flags, n);
+	ft_int_exceptions(&flags, n);
 
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
-		str = ft_str_with_precision(n, str, flags);
+		str = ft_int_with_precision(n, str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-		str = ft_str_right_width(str, flags);
+		str = ft_int_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
-		str = ft_str_left_width(str, flags);
+		str = ft_int_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }

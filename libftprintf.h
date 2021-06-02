@@ -31,8 +31,10 @@ char	*ft_itoa(int n);
 void	ft_if_neg(int *size, long *nbr);
 int	ft_count_digits(int n);
 int	ft_print_int(t_list flags, va_list args);
+int		ft_print_char(t_list flags, va_list args);
 void	ft_putchar_n(char c, int *count);
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
+char	*ft_char_to_str(char c);
 
 # endif

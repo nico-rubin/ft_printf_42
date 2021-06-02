@@ -58,6 +58,8 @@ int		ft_printer(char *format, t_list flags, va_list args)
 {
 	if (*format == 'i' || *format == 'd')
 		return (ft_print_int(flags, args));
+	if (*format == 'c')
+		return (ft_print_char(flags, args));
 	else
 		return (0);
 }
@@ -113,9 +115,10 @@ int	ft_printf(const char *str, ...)
 int	main(void)
 {
 	// i and d
-	printf("\n%i\n", ft_printf("%*.*i", 10, 5, -456));
-	printf("\n%i\n", printf("%*.*i", 10, 5, -456));
+	//printf("\n%i\n", ft_printf("%*.*i", 10, 5, -456));
+	//printf("\n%i\n", printf("%*.*i", 10, 5, -456));
 
 	// c
-	printf("\n%i\n", printf("%10c", 'c'));
+	printf("\n%i\n", ft_printf("%010c", 'c'));
+	printf("\n%i\n", printf("%010c", 'c'));
 }
