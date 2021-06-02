@@ -1,7 +1,7 @@
 #include "libftprintf.h"
 
 // Handles exceptional flag cases.
-void	ft_low_hex_exceptions(t_list *flags, int n)
+void	ft_up_hex_exceptions(t_list *flags, int n)
 {
 	if (flags->dot > -1 && flags->zero == 1)
 		flags->zero = 0;
@@ -24,7 +24,7 @@ void	ft_low_hex_exceptions(t_list *flags, int n)
 }
 
 // Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
-char *ft_low_hex_with_precision(int n, char *str, t_list flags)
+char *ft_up_hex_with_precision(int n, char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -45,7 +45,7 @@ char *ft_low_hex_with_precision(int n, char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is right aligned.
-char	*ft_low_hex_right_width(char *str, t_list flags)
+char	*ft_up_hex_right_width(char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -70,7 +70,7 @@ char	*ft_low_hex_right_width(char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is left aligned.
-char	*ft_low_hex_left_width(char *str, t_list flags)
+char	*ft_up_hex_left_width(char *str, t_list flags)
 {
 	int	diff;
 	char	*ret;
@@ -90,7 +90,7 @@ char	*ft_low_hex_left_width(char *str, t_list flags)
 }
 
 // Main int printing function.
-int		ft_print_low_hex(t_list flags, va_list args)
+int		ft_print_up_hex(t_list flags, va_list args)
 {
 	int	n;
 	int i;
@@ -98,17 +98,17 @@ int		ft_print_low_hex(t_list flags, va_list args)
 	char *str;
 
 	n = va_arg(args, int);
-	str = ft_to_low_hex(n);
-	ft_low_hex_exceptions(&flags, n);
+	str = ft_to_up_hex(n);
+	ft_up_hex_exceptions(&flags, n);
 
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
-		str = ft_low_hex_with_precision(n, str, flags);
+		str = ft_up_hex_with_precision(n, str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-		str = ft_low_hex_right_width(str, flags);
+		str = ft_up_hex_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
-		str = ft_low_hex_left_width(str, flags);
+		str = ft_up_hex_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }

@@ -177,3 +177,31 @@ char	*ft_to_low_hex(int n)
 	ret = ft_strdup(stock);
 	return (ret);
 }
+
+char	*ft_to_up_hex(int n)
+{
+	unsigned int nbr;
+	int	quotient;
+	int remainder;
+	char stock[50];
+	char *ret;
+	int i;
+
+	nbr = (unsigned int)n;
+	i = 0;
+	while (nbr)
+	{
+		remainder = nbr % 16;
+		nbr = nbr / 16;
+		if (remainder < 10)
+			remainder = remainder + '0';
+		else
+			remainder = (remainder - 10) + 'A';
+		stock[i++] = remainder;
+	}
+	stock[i] = '\0';
+	ft_flip(stock);
+	ret = (char *)malloc(sizeof(*ret) * (ft_strlen(stock) + 1));
+	ret = ft_strdup(stock);
+	return (ret);
+}

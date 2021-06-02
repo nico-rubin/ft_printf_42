@@ -64,8 +64,8 @@ int		ft_printer(char *format, t_list flags, va_list args)
 		return (ft_print_str(flags, args));
 	if (*format == 'x')
 		return (ft_print_low_hex(flags, args));
-	//if (*format == 'X')
-		//return (ft_print_up_hex(flags, args));
+	if (*format == 'X')
+		return (ft_print_up_hex(flags, args));
 	//if (*format == 'p')
 		//return (ft_print_pointer(flags, args));
 	//if (*format == 'u')
@@ -143,6 +143,9 @@ int	main(void)
 	//printf("| count: %i\n\n", ft_printf("output: |%.2x", -123));
 	//printf("| count: %i\n\n", printf("output: |%.2x", -123));
 
-	printf("| count: %i\n\n", ft_printf("output: |%30.20x", -123));
-	printf("| count: %i\n\n", printf("output: |%30.20x", -123));
+	//printf("| count: %i\n\n", ft_printf("output: |%3.0x", 0));
+	//printf("| count: %i\n\n", printf("output: |%3.0x", 0));
+
+	printf("| count: %i\n\n", ft_printf("output: |%3X", -12435));
+	printf("| count: %i\n\n", printf("output: |%3X", -12435));
 }

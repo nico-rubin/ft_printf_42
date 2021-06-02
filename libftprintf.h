@@ -34,10 +34,13 @@ int	ft_print_int(t_list flags, va_list args);
 int		ft_print_char(t_list flags, va_list args);
 int		ft_print_str(t_list flags, va_list args);
 int		ft_print_low_hex(t_list flags, va_list args);
+int		ft_print_up_hex(t_list flags, va_list args);
 void	ft_putchar_n(char c, int *count);
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
 char	*ft_char_to_str(char c);
 char	*ft_to_low_hex(int n);
+char	*ft_to_up_hex(int n);
 void	ft_flip(char *str);
+
 # endif
