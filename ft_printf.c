@@ -112,5 +112,6 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	ft_printf("%*.*i", 10, 5, -456);
+	printf("\n%i\n", ft_printf("%*.*i", 10, 5, -456));
+	printf("\n%i\n", printf("%*.*i", 10, 5, -456));
 }
