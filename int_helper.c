@@ -28,9 +28,11 @@ void	ft_exceptions(t_list *flags, int n)
 		int i;
 		i = flags->width;
 		ret = (char *)malloc(sizeof(*ret) * (i + 1));
-		ret[i] = '/0';
-		while (i)
-			ret[i--] = ' ';
+		ret[i] = '\0';
+		while (i--)
+			ret[i] = '.';
+		ft_putstr(ret);
+		free(ret);
 	}
 }
 
@@ -113,8 +115,9 @@ int		ft_print_int(t_list flags, va_list args)
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
-	ft_exceptions(&flags);
-	if (flags->dot )
+	ft_exceptions(&flags, n);
+	if (flags.dot == 0 && n == 0)
+		return (flags.width);
 
 	// PRECISION <= LENGTH
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)

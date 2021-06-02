@@ -72,6 +72,7 @@ int	ft_manager(char *format, va_list args)
 			while(ft_is_identifier(*format) || *format == '%')
 				format++;
 			count += ft_printer(format, flags, args);
+			printf("%c", *format);
 			format++;
 		}
 		else
@@ -107,8 +108,7 @@ int	main(void)
 	//i = ft_printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
 //	printf("\n%i\n", i);
 	//i = printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
-	printf("%10.0i\n", 0);
-
+	ft_printf("%10i\n", 100);
 	//ft_printf("%-10i\n", 12);
 	//ft_printf("%10.0i\n", 0);
 	//printf("\n%.4i\n", -12);
