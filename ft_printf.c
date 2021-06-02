@@ -124,17 +124,18 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	//printf("| count: %i\n\n", ft_printf("output: |%*.*i", 10, 5, -456));
-	//printf("| count: %i\n\n", printf("output: |%*.*i", 10, 5, -456));
+	//printf("| count: %i\n\n", ft_printf("output: |%30.20i", -456));
+	//printf("| count: %i\n\n", printf("output: |%30.20i", -456));
 
 	//printf("| count: %i\n", ft_printf("output: |%0*c", 10, 'c'));
 	//printf("| count: %i\n\n", printf("output: |%0*c", 10, 'c'));
 
-	//printf("| count: %i\n\n", ft_printf("output: |%12.2s", "hello"));
-	//printf("| count: %i\n\n", printf("output: |%12.2s", "hello"));
+	//char *s = NULL;
+	//printf("| count: %i\n\n", ft_printf("output: |%s", s));
+	//printf("| count: %i\n\n", printf("output: |%s", s));
 
-	printf("| count: %i\n\n", ft_printf("output: |%x", 75));
-	printf("| count: %i\n\n", printf("output: |%x", 75));
+	//printf("| count: %i\n\n", ft_printf("output: |%x", 75));
+	//printf("| count: %i\n\n", printf("output: |%x", 75));
 
 	//printf("| count: %i\n\n", ft_printf("output: |%12x", -123));
 	//printf("| count: %i\n\n", printf("output: |%12x", -123));
@@ -142,6 +143,6 @@ int	main(void)
 	//printf("| count: %i\n\n", ft_printf("output: |%.2x", -123));
 	//printf("| count: %i\n\n", printf("output: |%.2x", -123));
 
-	//printf("| count: %i\n\n", ft_printf("output: |%5.2x", -123));
-	//printf("| count: %i\n\n", printf("output: |%5.2x", -123));
+	printf("| count: %i\n\n", ft_printf("output: |%30.20x", -123));
+	printf("| count: %i\n\n", printf("output: |%30.20x", -123));
 }

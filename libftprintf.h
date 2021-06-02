@@ -40,5 +40,4 @@ void	ft_putstr(char *str);
 char	*ft_char_to_str(char c);
 char	*ft_to_low_hex(int n);
 void	ft_flip(char *str);
-
 # endif

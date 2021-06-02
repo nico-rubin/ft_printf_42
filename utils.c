@@ -135,49 +135,45 @@ void	ft_flip(char *str)
 	char tmp;
 	int i;
 	int len;
-	int half;
+	int k;
 
 	i = 0;
-	len = ft_strlen(str) / 2;
-	half = len / 2;
-	while (len > half)
+	len = ft_strlen(str);
+	k = len / 2;
+	while (len > k)
 	{
-		tmp = str[len - 1];
-		str[len - 1] = str[i];
-		str[i] = tmp;
-		len--;
+		tmp = str[i];
+		str[i] = str[len - 1];
+		str[len - 1] = tmp;
 		i++;
+		len--;
 	}
 }
 
-char *ft_to_low_hex(int n)
+char	*ft_to_low_hex(int n)
 {
-	int i;
-	int tmp;
-	char hexadecimal[50];
+	unsigned int nbr;
+	int	quotient;
+	int remainder;
+	char stock[50];
 	char *ret;
+	int i;
 
+	nbr = (unsigned int)n;
 	i = 0;
-	if (n < 0)
+	while (nbr)
 	{
-		while (i < 6)
-		{
-			hexadecimal[i++] = 'f';
-		}
-		n = n * -1;
-	}
-	while (n != 0)
-	{
-		tmp = n % 16;
-		if (tmp < 10)
-			tmp = tmp + 48;
+		remainder = nbr % 16;
+		nbr = nbr / 16;
+		if (remainder < 10)
+			remainder = remainder + '0';
 		else
-			tmp = tmp + 55;
-		hexadecimal[i++] = tmp;
-		n = n / 16;
+			remainder = (remainder - 10) + 'a';
+		stock[i++] = remainder;
 	}
-	hexadecimal[i] = '\0';
-	ret = ft_strdup(hexadecimal);
-	ft_flip(ret);
+	stock[i] = '\0';
+	ft_flip(stock);
+	ret = (char *)malloc(sizeof(*ret) * (ft_strlen(stock) + 1));
+	ret = ft_strdup(stock);
 	return (ret);
 }

@@ -37,8 +37,6 @@ char *ft_low_hex_with_precision(int n, char *str, t_list flags)
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.dot - len;
-	if (n < 0)
-		diff++;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < diff)
 		ret[i++] = '0';
@@ -103,8 +101,7 @@ int		ft_print_low_hex(t_list flags, va_list args)
 	char *str;
 
 	n = va_arg(args, int);
-	tmp = ft_to_low_hex(n);
-	str = ft_strdup(tmp);
+	str = ft_to_low_hex(n);
 	ft_low_hex_exceptions(&flags);
 
 	if (flags.dot == 0 && n == 0)
