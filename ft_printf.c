@@ -26,6 +26,11 @@ void	ft_parser(char *format, t_list *flags, va_list args)
 			flags->zero = 1;
 		format++;
 	}
+	if (*format == '*')
+	{
+		flags->width = va_arg(args, int);
+		format++;
+	}
 	while (*format >= '0' && *format <= '9')
 	{
 		flags->width = flags->width * 10 + *format - '0';
@@ -34,6 +39,11 @@ void	ft_parser(char *format, t_list *flags, va_list args)
 	if (*format == '.')
 	{
 		flags->dot = 0;
+		format++;
+	}
+	if (*format == '*')
+	{
+		flags->dot = va_arg(args, int);
 		format++;
 	}
 	while (*format >= '0' && *format <= '9')
@@ -46,7 +56,7 @@ void	ft_parser(char *format, t_list *flags, va_list args)
 // Calls the correct depending or conversion type.
 int		ft_printer(char *format, t_list flags, va_list args)
 {
-	if (*format == 'i')
+	if (*format == 'i' || *format == 'd')
 		return (ft_print_int(flags, args));
 	else
 		return (0);
@@ -72,7 +82,7 @@ int	ft_manager(char *format, va_list args)
 			while(ft_is_identifier(*format) || *format == '%')
 				format++;
 			count += ft_printer(format, flags, args);
-			printf("%c", *format);
+			flags = ft_flags();
 			format++;
 		}
 		else
@@ -81,7 +91,6 @@ int	ft_manager(char *format, va_list args)
 			format++;
 		}
 	}
-	flags = ft_flags();
 	return (count);
 }
 
@@ -103,38 +112,5 @@ int	ft_printf(const char *str, ...)
 
 int	main(void)
 {
-	int i;
-
-	//i = ft_printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
-//	printf("\n%i\n", i);
-	//i = printf("%%%-5.3i \nHello%% %5.4i", 12, 10);
-	ft_printf("%10i\n", 100);
-	//ft_printf("%-10i\n", 12);
-	//ft_printf("%10.0i\n", 0);
-	//printf("\n%.4i\n", -12);
-
-	//ft_printf("%10.4i", -99);
-//	printf("\n%-5.2i\n\n", -12);
-
-/*
-	// str < width && width > dot && dot > str
-	// str < width && width < dot && dot > str
-	ft_printf("%4.5i", -120);
-	printf("\n%4.5i\n\n", -120);
-
-	// str > width && width > dot && dot > str
-	ft_printf("%1.4i", 120);
-	printf("\n%1.4i\n\n", 120);
-
-	// str > width && width < dot && dot > str
-	ft_printf("%3.5i", 1200);
-	printf("\n%3.5i\n\n", 1200);
-
-	// str < width && width < dot && dot > str
-	ft_printf("%5.3i", 12000);
-	printf("\n%5.3i\n\n", 12000);
-
-	 ft_printf("%50.30i", -10);
-	 printf("\n%50.30i\n\n", -10);
-*/
+	ft_printf("%*.*i", 10, 5, -456);
 }

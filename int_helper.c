@@ -11,9 +11,7 @@ void	ft_sort(char *ret)
 	*ret = '0';
 }
 
-////////////////////////////////////////////////////////////////////////////////
-// OYE OYE HERE IS THE SOLUTION DO THIS FOR EVERYTHING /////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+// Handles exceptional flag cases.
 void	ft_exceptions(t_list *flags, int n)
 {
 	if (flags->dot > -1 && flags->zero == 1)
@@ -30,7 +28,7 @@ void	ft_exceptions(t_list *flags, int n)
 		ret = (char *)malloc(sizeof(*ret) * (i + 1));
 		ret[i] = '\0';
 		while (i--)
-			ret[i] = '.';
+			ret[i] = ' ';
 		ft_putstr(ret);
 		free(ret);
 	}
@@ -112,25 +110,36 @@ int		ft_print_int(t_list flags, va_list args)
 	int	n;
 	int i;
 	char *str;
+	char *tmp;
+	char *tmp2;
+	char *tmp3;
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
 	ft_exceptions(&flags, n);
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
-
-	// PRECISION <= LENGTH
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
-		str = ft_str_with_precision(n, str, flags);
-
-	// WIDTH <= LENGTH && RIGHT ALIGN
+	{
+		tmp = ft_str_with_precision(n, str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-		str = ft_str_right_width(str, flags);
-
-	// WIDTH <= LENGHT && LEFT ALIGN
+	{
+		tmp = ft_str_right_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
-		str = ft_str_left_width(str, flags);
-
+	{
+		tmp = ft_str_left_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	ft_putstr(str);
 	return (ft_strlen(str));
 }

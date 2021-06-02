@@ -27,7 +27,7 @@ char	*ft_strdup(const char *s1)
 
 int	ft_is_identifier(char c)
 {
-	if (c == '-' || c == '.' || (c >= '0' && c <= '9'))
+	if (c == '-' || c == '.' || (c >= '0' && c <= '9') || c == '*')
 		return (1);
 	else
 		return (0);
