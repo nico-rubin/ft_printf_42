@@ -62,6 +62,14 @@ int		ft_printer(char *format, t_list flags, va_list args)
 		return (ft_print_char(flags, args));
 	if (*format == 's')
 		return (ft_print_str(flags, args));
+	if (*format == 'x')
+		return (ft_print_low_hex(flags, args));
+	//if (*format == 'X')
+		//return (ft_print_up_hex(flags, args));
+	//if (*format == 'p')
+		//return (ft_print_pointer(flags, args));
+	//if (*format == 'u')
+		//return (ft_print_unsigned(flags, args));
 	else
 		return (0);
 }
@@ -125,5 +133,15 @@ int	main(void)
 	//printf("| count: %i\n\n", ft_printf("output: |%12.2s", "hello"));
 	//printf("| count: %i\n\n", printf("output: |%12.2s", "hello"));
 
+	printf("| count: %i\n\n", ft_printf("output: |%x", 75));
+	printf("| count: %i\n\n", printf("output: |%x", 75));
 
+	//printf("| count: %i\n\n", ft_printf("output: |%12x", -123));
+	//printf("| count: %i\n\n", printf("output: |%12x", -123));
+
+	//printf("| count: %i\n\n", ft_printf("output: |%.2x", -123));
+	//printf("| count: %i\n\n", printf("output: |%.2x", -123));
+
+	//printf("| count: %i\n\n", ft_printf("output: |%5.2x", -123));
+	//printf("| count: %i\n\n", printf("output: |%5.2x", -123));
 }
