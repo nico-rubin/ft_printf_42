@@ -110,36 +110,19 @@ int		ft_print_int(t_list flags, va_list args)
 	int	n;
 	int i;
 	char *str;
-	char *tmp;
-	char *tmp2;
-	char *tmp3;
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
 	ft_exceptions(&flags, n);
+
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
-	{
-		tmp = ft_str_with_precision(n, str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_str_with_precision(n, str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-	{
-		tmp = ft_str_right_width(str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_str_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
-	{
-		tmp = ft_str_left_width(str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_str_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }
