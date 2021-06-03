@@ -42,5 +42,7 @@ char	*ft_char_to_str(char c);
 char	*ft_to_low_hex(int n);
 char	*ft_to_up_hex(int n);
 void	ft_flip(char *str);
+char	*ft_to_pointer(unsigned long p);
+int		ft_print_pointer(t_list flags, va_list args);
 
 # endif

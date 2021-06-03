@@ -1,7 +1,7 @@
 #include "libftprintf.h"
 
 // Handles exceptional flag cases.
-void	ft_str_exceptions(t_list *flags, char *str)
+void	ft_pointer_exceptions(t_list *flags, int n)
 {
 	if (flags->dot > -1 && flags->zero == 1)
 		flags->zero = 0;
@@ -9,7 +9,7 @@ void	ft_str_exceptions(t_list *flags, char *str)
 	if (flags->zero == 1 && flags->minus == 1)
 		flags->minus = 0;
 
-	/*if (flags->dot == 0)
+	if (flags->dot == 0 && n == 0)
 	{
 		char *ret;
 		int i;
@@ -21,28 +21,31 @@ void	ft_str_exceptions(t_list *flags, char *str)
 		ft_putstr(ret);
 		free(ret);
 	}
-	*/
 }
 
 // Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
-char *ft_str_with_precision(char *str, t_list flags)
+char *ft_pointer_with_precision(char *str, t_list flags)
 {
+	int diff;
 	char *ret;
 	int i;
 	int len;
 
 	i = 0;
-	len = flags.dot;
-	ret = (char *)malloc(sizeof(*ret) * (len + 1));
-	ret[len] = '\0';
-	while (len--)
-		ret[len] = str[len];
+	len = ft_strlen(str);
+	diff = flags.dot - len;
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	while (i < diff)
+		ret[i++] = '0';
+	while (i < diff + len)
+		ret[i++] = *(str++);
+	ret[i] = '\0';
 	return (ret);
 }
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is right aligned.
-char	*ft_str_right_width(char *str, t_list flags)
+char	*ft_pointer_right_width(char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -67,7 +70,7 @@ char	*ft_str_right_width(char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is left aligned.
-char	*ft_str_left_width(char *str, t_list flags)
+char	*ft_pointer_left_width(char *str, t_list flags)
 {
 	int	diff;
 	char	*ret;
@@ -87,20 +90,24 @@ char	*ft_str_left_width(char *str, t_list flags)
 }
 
 // Main int printing function.
-int		ft_print_str(t_list flags, va_list args)
+int		ft_print_pointer(t_list flags, va_list args)
 {
+	void *p;
 	int i;
-	char *str;
+	char	*str;
 
-	str = ft_strdup(va_arg(args, char *));
-	ft_str_exceptions(&flags, str);
+	p = va_arg(args, void *);
+	str = ft_to_pointer((unsigned long)p);
+	//ft_low_hex_exceptions(&flags, p);
 
-	if (flags.dot > -1)
-		str = ft_str_with_precision(str, flags);
+	//if (flags.dot == 0 && n == 0)
+		//return (flags.width);
+	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
+		str = ft_pointer_with_precision(str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-		str = ft_str_right_width(str, flags);
+		str = ft_pointer_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
-		str = ft_str_left_width(str, flags);
+		str = ft_pointer_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }
