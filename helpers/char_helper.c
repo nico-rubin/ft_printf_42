@@ -67,9 +67,9 @@ int		ft_print_char(t_list flags, va_list args)
 	str = ft_char_to_str(c);
 	ft_char_exceptions(&flags);
 
-	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_char_right_width(str, flags);
-	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_char_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));

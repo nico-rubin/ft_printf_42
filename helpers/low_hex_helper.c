@@ -101,11 +101,11 @@ int		ft_print_low_hex(t_list flags, va_list args)
 
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
-	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
+	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
 		str = ft_low_hex_with_precision(str, flags);
-	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_low_hex_right_width(str, flags);
-	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_low_hex_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));

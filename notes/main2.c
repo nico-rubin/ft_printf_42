@@ -2,6 +2,7 @@
 
 int	main(void)
 {
-	printf("%s", NULL);
-	ft_printf("%s", NULL);
+	printf("%07i", -54);
+	printf("\n");
+	ft_printf("%07i", -54);
 }

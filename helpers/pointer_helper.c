@@ -101,11 +101,11 @@ int		ft_print_pointer(t_list flags, va_list args)
 	str = ft_to_pointer((unsigned long)p);
 
 	// if pointer is null && if pointer == '0'
-	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
+	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
 		str = ft_pointer_with_precision(str, flags);
-	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_pointer_right_width(str, flags);
-	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_pointer_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));

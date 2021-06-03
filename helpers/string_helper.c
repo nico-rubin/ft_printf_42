@@ -96,9 +96,9 @@ int		ft_print_str(t_list flags, va_list args)
 		str = ft_strdup("(null)");
 	if (flags.dot > -1)
 		str = ft_str_with_precision(str, flags);
-	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_str_right_width(str, flags);
-	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
+	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_str_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));
