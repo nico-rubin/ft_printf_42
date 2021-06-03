@@ -1,6 +1,5 @@
 When string is NULL
 
-
 When * is passed as the flag, if then number is negative the sign is ignored for
 some reason
 
@@ -11,3 +10,5 @@ Precision with pointers
 When pointer is 0
 
 When just using %
+
+c is ''

@@ -62,6 +62,7 @@ int		ft_print_char(t_list flags, va_list args)
 	char c;
 	char *str;
 
+
 	c = va_arg(args, int);
 	str = ft_char_to_str(c);
 	ft_char_exceptions(&flags);

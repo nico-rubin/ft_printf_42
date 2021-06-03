@@ -91,9 +91,9 @@ int		ft_print_str(t_list flags, va_list args)
 {
 	char *str;
 
-	str = ft_strdup(va_arg(args, char *));
-	ft_str_exceptions(&flags);
-
+	str = va_arg(args, char *);
+	if (str == NULL)
+		str = ft_strdup("(null)");
 	if (flags.dot > -1)
 		str = ft_str_with_precision(str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)

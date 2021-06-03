@@ -2,6 +2,6 @@
 
 int	main(void)
 {
-	ft_printf("|%010i|\n", -14);
-	printf("|%010i|\n", -14);
+	printf("%s", NULL);
+	ft_printf("%s", NULL);
 }
