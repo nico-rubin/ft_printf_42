@@ -68,8 +68,8 @@ int		ft_printer(char *format, t_list flags, va_list args)
 		return (ft_print_up_hex(flags, args));
 	if (*format == 'p')
 		return (ft_print_pointer(flags, args));
-	//if (*format == 'u')
-		//return (ft_print_unsigned(flags, args));
+	if (*format == 'u')
+		return (ft_print_unsigned(flags, args));
 	else
 		return (0);
 }
@@ -122,8 +122,9 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-int	main(void)
-{
+
+//int	main(void)
+//{
 	//printf("| count: %i\n", ft_printf("output: |%30.20i", -456));
 	//printf("| count: %i\n", printf("output: |%30.20i", -456));
 
@@ -146,10 +147,14 @@ int	main(void)
 	//printf("| count: %i\n", ft_printf("output: |%3.0x", 0));
 	//printf("| count: %i\n", printf("output: |%3.0x", 0));
 
-	int c;
-	printf("| count: %i\n", ft_printf("output: |%-30p", &c));
-	printf("| count: %i\n", printf("output: |%-30p", &c));
+	//int c;
+	//printf("| count: %i\n", ft_printf("output: |%-30p", &c));
+	//printf("| count: %i\n", printf("output: |%-30p", &c));
 
 	//printf("| count: %i\n", ft_printf("output: |%010i ||| %-40s ||| %3.4c ||| %10.5x ||| %20.15X |||",-2147483648, "Hello there Noa", 'N', -2147483648, -6785));
 	//printf("| count: %i\n", printf("output: |%010i ||| %-40s ||| %3.4c ||| %10.5x ||| %20.15X |||", -2147483648, "Hello there Noa", 'N', -2147483648, -6785));
-}
+
+	//printf("| count: %i\n", ft_printf("output: |%30.20u", 2147483748));
+	//printf("| count: %i\n", printf("output: |%30.20u", 2147483748));
+//}
+

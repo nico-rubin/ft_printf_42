@@ -44,5 +44,8 @@ char	*ft_to_up_hex(int n);
 void	ft_flip(char *str);
 char	*ft_to_pointer(unsigned long p);
 int		ft_print_pointer(t_list flags, va_list args);
+char	*ft_utoa(unsigned int n);
+int		ft_print_unsigned(t_list flags, va_list args);
+void	ft_unsigned_exceptions(t_list *flags, unsigned n);
 
 # endif

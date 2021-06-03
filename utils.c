@@ -232,3 +232,26 @@ char	*ft_to_pointer(unsigned long p)
 	ret = ft_strdup(stock);
 	return (ret);
 }
+
+char	*ft_utoa(unsigned int n)
+{
+	int		size;
+	char	*ret;
+
+	size = 0;
+	if (n < 0)
+		n *= -1;
+	size = size + ft_count_digits(n);
+	ret = (char *)malloc(sizeof(*ret) * (size + 1));
+	if (!ret)
+		return (NULL);
+	ret[size] = '\0';
+	size--;
+	while (size >= 0)
+	{
+		ret[size] = n % 10 + '0';
+		size--;
+		n = n / 10;
+	}
+	return (ret);
+}
