@@ -1,7 +1,7 @@
-#include "includes/libftprintf.h"
+#include "../includes/libftprintf.h"
 
 int	main(void)
 {
-	ft_printf("|%-5%|\n");
-	printf("|%-5%|\n");
+	ft_printf("|%010i|\n", -14);
+	printf("|%010i|\n", -14);
 }

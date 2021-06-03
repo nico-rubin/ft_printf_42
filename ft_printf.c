@@ -59,19 +59,19 @@ int		ft_printer(char *format, t_list flags, va_list args)
 {
 	if (*format == 'i' || *format == 'd')
 		return (ft_print_int(flags, args));
-	else if (*format == 'c')
+	if (*format == 'c')
 		return (ft_print_char(flags, args));
-	else if (*format == 's')
+	if (*format == 's')
 		return (ft_print_str(flags, args));
-	else if (*format == 'x')
+	if (*format == 'x')
 		return (ft_print_low_hex(flags, args));
-	else if (*format == 'X')
+	if (*format == 'X')
 		return (ft_print_up_hex(flags, args));
-	else if (*format == 'p')
+	if (*format == 'p')
 		return (ft_print_pointer(flags, args));
-	else if (*format == 'u')
+	if (*format == 'u')
 		return (ft_print_unsigned(flags, args));
-	else if (*format == '%')
+	if (*format == '%')
 		return (ft_print_percent(flags));
 	else
 		return (0);

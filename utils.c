@@ -159,6 +159,8 @@ char	*ft_to_low_hex(int n)
 
 	nbr = (unsigned int)n;
 	i = 0;
+	if (nbr == 0)
+		return (ft_strdup("0"));
 	while (nbr)
 	{
 		remainder = nbr % 16;
@@ -186,6 +188,8 @@ char	*ft_to_up_hex(int n)
 
 	nbr = (unsigned int)n;
 	i = 0;
+	if (nbr == 0)
+		return (ft_strdup("0"));
 	while (nbr)
 	{
 		remainder = nbr % 16;

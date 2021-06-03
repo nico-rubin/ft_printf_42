@@ -60,7 +60,7 @@ char *ft_int_with_precision(int n, char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is right aligned.
-char	*ft_int_right_width(char *str, t_list flags)
+char	*ft_int_right_width(int n, char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -80,6 +80,8 @@ char	*ft_int_right_width(char *str, t_list flags)
 	while (i < diff + len)
 		ret[i++] = *(str++);
 	ret[i] = '\0';
+	if (flags.zero == 1 && n < 0)
+		ft_sort(ret);
 	return (ret);
 }
 
@@ -119,7 +121,7 @@ int		ft_print_int(t_list flags, va_list args)
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
 		str = ft_int_with_precision(n, str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-		str = ft_int_right_width(str, flags);
+		str = ft_int_right_width(n, str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
 		str = ft_int_left_width(str, flags);
 	ft_putstr(str);
