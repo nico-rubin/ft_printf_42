@@ -1,18 +1,7 @@
-#include "libftprintf.h"
-
-// Correctly positions the '-' symbol when 'n' is negative and there is a
-// precison.
-void	ft_sort(char *ret)
-{
-	*ret = '-';
-	ret++;
-	while (*ret != '-')
-		ret++;
-	*ret = '0';
-}
+#include "../includes/libftprintf.h"
 
 // Handles exceptional flag cases.
-void	ft_int_exceptions(t_list *flags, int n)
+void	ft_low_hex_exceptions(t_list *flags, int n)
 {
 	if (flags->dot > -1 && flags->zero == 1)
 		flags->zero = 0;
@@ -35,7 +24,7 @@ void	ft_int_exceptions(t_list *flags, int n)
 }
 
 // Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
-char *ft_int_with_precision(int n, char *str, t_list flags)
+char *ft_low_hex_with_precision(char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -45,22 +34,18 @@ char *ft_int_with_precision(int n, char *str, t_list flags)
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.dot - len;
-	if (n < 0)
-		diff++;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < diff)
 		ret[i++] = '0';
 	while (i < diff + len)
 		ret[i++] = *(str++);
 	ret[i] = '\0';
-	if (n < 0)
-		ft_sort(ret);
 	return (ret);
 }
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is right aligned.
-char	*ft_int_right_width(char *str, t_list flags)
+char	*ft_low_hex_right_width(char *str, t_list flags)
 {
 	int diff;
 	char *ret;
@@ -85,7 +70,7 @@ char	*ft_int_right_width(char *str, t_list flags)
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is left aligned.
-char	*ft_int_left_width(char *str, t_list flags)
+char	*ft_low_hex_left_width(char *str, t_list flags)
 {
 	int	diff;
 	char	*ret;
@@ -105,24 +90,23 @@ char	*ft_int_left_width(char *str, t_list flags)
 }
 
 // Main int printing function.
-int		ft_print_int(t_list flags, va_list args)
+int		ft_print_low_hex(t_list flags, va_list args)
 {
 	int	n;
-	int i;
 	char *str;
 
 	n = va_arg(args, int);
-	str = ft_itoa(n);
-	ft_int_exceptions(&flags, n);
+	str = ft_to_low_hex(n);
+	ft_low_hex_exceptions(&flags, n);
 
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
 	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
-		str = ft_int_with_precision(n, str, flags);
+		str = ft_low_hex_with_precision(str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) <= flags.width)
-		str = ft_int_right_width(str, flags);
+		str = ft_low_hex_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) <= flags.width)
-		str = ft_int_left_width(str, flags);
+		str = ft_low_hex_left_width(str, flags);
 	ft_putstr(str);
 	return (ft_strlen(str));
 }

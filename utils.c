@@ -1,8 +1,8 @@
-#include "libftprintf.h"
+#include "includes/libftprintf.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	size;
+	int	size;
 
 	size = 0;
 	while (s[size])
@@ -120,7 +120,6 @@ void	ft_putstr(char *str)
 char	*ft_char_to_str(char c)
 {
 	char	*ret;
-	size_t	len;
 
 	ret = (char *)malloc(sizeof(*ret) * (2));
 	if (!ret)
@@ -153,7 +152,6 @@ void	ft_flip(char *str)
 char	*ft_to_low_hex(int n)
 {
 	unsigned int nbr;
-	int	quotient;
 	int remainder;
 	char stock[50];
 	char *ret;
@@ -181,7 +179,6 @@ char	*ft_to_low_hex(int n)
 char	*ft_to_up_hex(int n)
 {
 	unsigned int nbr;
-	int	quotient;
 	int remainder;
 	char stock[50];
 	char *ret;
@@ -207,7 +204,6 @@ char	*ft_to_up_hex(int n)
 }
 char	*ft_to_pointer(unsigned long p)
 {
-	int	quotient;
 	int remainder;
 	char stock[50];
 	char *ret;
@@ -254,4 +250,27 @@ char	*ft_utoa(unsigned int n)
 		n = n / 10;
 	}
 	return (ret);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	res;
+	int	sign;
+
+	sign = 1;
+	res = 0;
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		res = res * 10 + *str - '0';
+		str++;
+	}
+	return (res * sign);
 }

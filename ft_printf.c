@@ -1,4 +1,4 @@
-#include "libftprintf.h"
+#include "includes/libftprintf.h"
 
 
 // Initializes flag structure.
@@ -15,7 +15,7 @@ t_list ft_flags(void)
 }
 
 // Parses through format string to fill flags structure with information.
-void	ft_parser(char *format, t_list *flags, va_list args)
+char *ft_parser(char *format, t_list *flags, va_list args)
 {
 	format++;
 	while (*format == '-' || *format == '0')
@@ -51,6 +51,7 @@ void	ft_parser(char *format, t_list *flags, va_list args)
 		flags->dot = flags->dot * 10 + *format - '0';
 		format++;
 	}
+	return (format);
 }
 
 // Calls the correct depending or conversion type.
@@ -58,18 +59,20 @@ int		ft_printer(char *format, t_list flags, va_list args)
 {
 	if (*format == 'i' || *format == 'd')
 		return (ft_print_int(flags, args));
-	if (*format == 'c')
+	else if (*format == 'c')
 		return (ft_print_char(flags, args));
-	if (*format == 's')
+	else if (*format == 's')
 		return (ft_print_str(flags, args));
-	if (*format == 'x')
+	else if (*format == 'x')
 		return (ft_print_low_hex(flags, args));
-	if (*format == 'X')
+	else if (*format == 'X')
 		return (ft_print_up_hex(flags, args));
-	if (*format == 'p')
+	else if (*format == 'p')
 		return (ft_print_pointer(flags, args));
-	if (*format == 'u')
+	else if (*format == 'u')
 		return (ft_print_unsigned(flags, args));
+	else if (*format == '%')
+		return (ft_print_percent(flags));
 	else
 		return (0);
 }
@@ -90,9 +93,7 @@ int	ft_manager(char *format, va_list args)
 		}
 		else if (*format == '%')
 		{
-			ft_parser(format, &flags, args);
-			while(ft_is_identifier(*format) || *format == '%')
-				format++;
+			format = ft_parser(format, &flags, args);
 			count += ft_printer(format, flags, args);
 			flags = ft_flags();
 			format++;
@@ -121,40 +122,3 @@ int	ft_printf(const char *str, ...)
 	free(format);
 	return (count);
 }
-
-
-//int	main(void)
-//{
-	//printf("| count: %i\n", ft_printf("output: |%30.20i", -456));
-	//printf("| count: %i\n", printf("output: |%30.20i", -456));
-
-	//printf("| count: %i\n", ft_printf("output: |%0*c", 10, 'c'));
-	//printf("| count: %i\n", printf("output: |%0*c", 10, 'c'));
-
-	//char *s = NULL;
-	//printf("| count: %i\n", ft_printf("output: |%s", s));
-	//printf("| count: %i\n", printf("output: |%s", s));
-
-	//printf("| count: %i\n", ft_printf("output: |%x", 75));
-	//printf("| count: %i\n", printf("output: |%x", 75));
-
-	//printf("| count: %i\n", ft_printf("output: |%12x", -123));
-	//printf("| count: %i\n", printf("output: |%12x", -123));
-
-	//printf("| count: %i\n", ft_printf("output: |%.2x", -123));
-	//printf("| count: %i\n", printf("output: |%.2x", -123));
-
-	//printf("| count: %i\n", ft_printf("output: |%3.0x", 0));
-	//printf("| count: %i\n", printf("output: |%3.0x", 0));
-
-	//int c;
-	//printf("| count: %i\n", ft_printf("output: |%-30p", &c));
-	//printf("| count: %i\n", printf("output: |%-30p", &c));
-
-	//printf("| count: %i\n", ft_printf("output: |%010i ||| %-40s ||| %3.4c ||| %10.5x ||| %20.15X |||",-2147483648, "Hello there Noa", 'N', -2147483648, -6785));
-	//printf("| count: %i\n", printf("output: |%010i ||| %-40s ||| %3.4c ||| %10.5x ||| %20.15X |||", -2147483648, "Hello there Noa", 'N', -2147483648, -6785));
-
-	//printf("| count: %i\n", ft_printf("output: |%30.20u", 2147483748));
-	//printf("| count: %i\n", printf("output: |%30.20u", 2147483748));
-//}
-

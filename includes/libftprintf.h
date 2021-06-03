@@ -22,7 +22,7 @@ typedef struct s_list
 }				t_list;
 
 char	*ft_strdup(const char *s1);
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 int		ft_is_identifier(char c);
 int	ft_is_conversion(char c);
 void	ft_integer_printer(char *format, t_list flags, va_list args);
@@ -47,5 +47,7 @@ int		ft_print_pointer(t_list flags, va_list args);
 char	*ft_utoa(unsigned int n);
 int		ft_print_unsigned(t_list flags, va_list args);
 void	ft_unsigned_exceptions(t_list *flags, unsigned n);
+int	ft_atoi(const char *str);
+int	ft_print_percent(t_list flags);
 
 # endif
