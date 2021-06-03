@@ -31,8 +31,6 @@ char *ft_pointer_with_precision(char *str, t_list flags)
 	int i;
 	int len;
 
-	// issues with '0x' being placed before '0's and not counted in total
-
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.dot - len;
@@ -102,7 +100,6 @@ int		ft_print_pointer(t_list flags, va_list args)
 		str = ft_strdup("0x0");
 	else
 		str = ft_to_pointer((unsigned long)p);
-
 	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
 		str = ft_pointer_with_precision(str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
