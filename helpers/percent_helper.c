@@ -3,9 +3,13 @@
 // Handles exceptional flag cases.
 void	ft_percent_exceptions(t_list *flags)
 {
+	if (flags->width < 0)
+	{
+		flags->width = flags->width * -1;
+		flags->minus = 1;
+	}
 	if (flags->dot > -1 && flags->zero == 1)
 		flags->zero = 0;
-
 	if (flags->zero == 1 && flags->minus == 1)
 		flags->zero = 0;
 }
@@ -14,10 +18,10 @@ void	ft_percent_exceptions(t_list *flags)
 // the result is right aligned.
 char	*ft_percent_right_width(char *str, t_list flags)
 {
-	int diff;
-	char *ret;
-	int	i;
-	int len;
+	int		diff;
+	char	*ret;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -39,10 +43,10 @@ char	*ft_percent_right_width(char *str, t_list flags)
 // the result is left aligned.
 char	*ft_percent_left_width(char *str, t_list flags)
 {
-	int	diff;
+	int		diff;
 	char	*ret;
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -57,13 +61,12 @@ char	*ft_percent_left_width(char *str, t_list flags)
 }
 
 // Main int printing function.
-int		ft_print_percent(t_list flags)
+int	ft_print_percent(t_list flags)
 {
-	char *str;
+	char	*str;
 
 	str = ft_strdup("%");
 	ft_percent_exceptions(&flags);
-
 	if (flags.width > 0 && flags.minus == 0)
 		str = ft_percent_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1)

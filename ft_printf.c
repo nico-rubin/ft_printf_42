@@ -1,21 +1,20 @@
 #include "includes/libftprintf.h"
 
-
 // Initializes flag structure.
-t_list ft_flags(void)
+t_list	ft_flags(void)
 {
-	t_list flags;
+	t_list	flags;
+
 	flags.width = 0;
 	flags.minus = 0;
 	flags.zero = 0;
 	flags.dot = -1;
 	flags.count = 0;
-
 	return (flags);
 }
 
 // Parses through format string to fill flags structure with information.
-char *ft_parser(char *format, t_list *flags, va_list args)
+char	*ft_parser(char *format, t_list *flags, va_list args)
 {
 	format++;
 	while (*format == '-' || *format == '0')
@@ -55,7 +54,7 @@ char *ft_parser(char *format, t_list *flags, va_list args)
 }
 
 // Calls the correct depending or conversion type.
-int		ft_printer(char *format, t_list flags, va_list args)
+int	ft_printer(char *format, t_list flags, va_list args)
 {
 	if (*format == 'i' || *format == 'd')
 		return (ft_print_int(flags, args));
@@ -79,7 +78,7 @@ int		ft_printer(char *format, t_list flags, va_list args)
 
 int	ft_manager(char *format, va_list args)
 {
-	int	count;
+	int		count;
 	t_list	flags;
 
 	flags = ft_flags();
@@ -109,13 +108,12 @@ int	ft_manager(char *format, va_list args)
 
 int	ft_printf(const char *str, ...)
 {
-	va_list args;
+	va_list	args;
 	int		count;
-	char 	*format;
+	char	*format;
 
 	format = ft_strdup(str);
 	count = 0;
-
 	va_start(args, str);
 	count = ft_manager(format, args);
 	va_end(args);

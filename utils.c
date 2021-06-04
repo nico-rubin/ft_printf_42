@@ -35,7 +35,8 @@ int	ft_is_identifier(char c)
 
 int	ft_is_conversion(char c)
 {
-	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X')
+	if (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X')
 		return (1);
 	else
 		return (0);
@@ -113,7 +114,7 @@ void	ft_putchar_n(char c, int *count)
 
 void	ft_putstr(char *str)
 {
-	while(*str)
+	while (*str)
 		ft_putchar(*(str++));
 }
 
@@ -131,10 +132,10 @@ char	*ft_char_to_str(char c)
 
 void	ft_flip(char *str)
 {
-	char tmp;
-	int i;
-	int len;
-	int k;
+	char	tmp;
+	int		i;
+	int		len;
+	int		k;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -151,11 +152,11 @@ void	ft_flip(char *str)
 
 char	*ft_to_low_hex(int n)
 {
-	unsigned int nbr;
-	int remainder;
-	char stock[50];
-	char *ret;
-	int i;
+	unsigned int	nbr;
+	int				remainder;
+	char			stock[50];
+	char			*ret;
+	int				i;
 
 	nbr = (unsigned int)n;
 	i = 0;
@@ -180,11 +181,11 @@ char	*ft_to_low_hex(int n)
 
 char	*ft_to_up_hex(int n)
 {
-	unsigned int nbr;
-	int remainder;
-	char stock[50];
-	char *ret;
-	int i;
+	unsigned int	nbr;
+	int				remainder;
+	char			stock[50];
+	char			*ret;
+	int				i;
 
 	nbr = (unsigned int)n;
 	i = 0;
@@ -206,12 +207,13 @@ char	*ft_to_up_hex(int n)
 	ret = ft_strdup(stock);
 	return (ret);
 }
+
 char	*ft_to_pointer(unsigned long p)
 {
-	int remainder;
-	char stock[50];
-	char *ret;
-	int i;
+	int		remainder;
+	char	stock[50];
+	char	*ret;
+	int		i;
 
 	i = 0;
 	while (p)

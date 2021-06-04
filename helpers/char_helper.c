@@ -3,21 +3,25 @@
 // Handles exceptional flag cases.
 void	ft_char_exceptions(t_list *flags)
 {
+	if (flags->width < 0)
+	{
+		flags->width = flags->width * -1;
+		flags->minus = 1;
+	}
 	if (flags->dot > -1 && flags->zero == 1)
 		flags->zero = 0;
-
 	if (flags->zero == 1 && flags->minus == 1)
-		flags->minus = 0;
+		flags->zero = 0;
 }
 
 // Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
 // the result is right aligned.
 char	*ft_char_right_width(char *str, t_list flags)
 {
-	int diff;
-	char *ret;
-	int	i;
-	int len;
+	int		diff;
+	char	*ret;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -39,10 +43,10 @@ char	*ft_char_right_width(char *str, t_list flags)
 // the result is left aligned.
 char	*ft_char_left_width(char *str, t_list flags)
 {
-	int	diff;
+	int		diff;
 	char	*ret;
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 
 	i = 0;
 	len = ft_strlen(str);
@@ -57,16 +61,14 @@ char	*ft_char_left_width(char *str, t_list flags)
 }
 
 // Main int printing function.
-int		ft_print_char(t_list flags, va_list args)
+int	ft_print_char(t_list flags, va_list args)
 {
-	char c;
-	char *str;
-
+	char	c;
+	char	*str;
 
 	c = va_arg(args, int);
 	str = ft_char_to_str(c);
 	ft_char_exceptions(&flags);
-
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_char_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
