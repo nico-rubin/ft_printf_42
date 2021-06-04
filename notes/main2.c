@@ -2,7 +2,6 @@
 
 int	main(void)
 {
-	printf("%07i", -54);
-	printf("\n");
-	ft_printf("%07i", -54);
+	printf("|%-05%|\n");
+	ft_printf("|%-05%|\n");
 }
