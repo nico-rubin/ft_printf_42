@@ -60,6 +60,36 @@ char	*ft_char_left_width(char *str, t_list flags)
 	return (ret);
 }
 
+int	ft_char_is_zero(t_list flags)
+{
+	char	*ret;
+	int		i;
+
+	i = 0;
+	if (flags.width == 0 && flags.minus == 0)
+	{
+		ret = NULL;
+		ft_putchar(0);
+		return (1);
+	}
+	ret = (char *)malloc(sizeof(*ret) * flags.width);
+	while (i < flags.width - 1)
+		ret[i++] = ' ';
+	ret[i] = 0;
+	if (flags.width > 0 && flags.minus == 0)
+	{
+		ft_putstr(ret);
+		ft_putchar(0);
+	}
+	if (flags.width > 0 && flags.minus > 0)
+	{
+		ft_putchar(0);
+		ft_putstr(ret);
+	}
+	free(ret);
+	return (flags.width);
+}
+
 // Main int printing function.
 int	ft_print_char(t_list flags, va_list args)
 {
@@ -67,6 +97,8 @@ int	ft_print_char(t_list flags, va_list args)
 	char	*str;
 
 	c = va_arg(args, int);
+	if (c == 0)
+		return (ft_char_is_zero(flags));
 	str = ft_char_to_str(c);
 	ft_char_exceptions(&flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)

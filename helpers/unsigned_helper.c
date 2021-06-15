@@ -96,11 +96,11 @@ char	*ft_unsigned_left_width(char *str, t_list flags)
 // Main int printing function.
 int	ft_print_unsigned(t_list flags, va_list args)
 {
-	int		n;
-	char	*str;
+	unsigned int	n;
+	char			*str;
 
-	n = va_arg(args, int);
-	str = ft_itoa(n);
+	n = (unsigned int)va_arg(args, int);
+	str = ft_utoa(n);
 	ft_unsigned_exceptions(&flags, n);
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);

@@ -48,9 +48,9 @@ void	ft_skip(char *str)
 		str++;
 }
 
-int	ft_count_digits(int n)
+long	ft_count_digits(long n)
 {
-	int	i;
+	long	i;
 
 	i = 0;
 	if (n == 0)
@@ -65,7 +65,7 @@ int	ft_count_digits(int n)
 
 // Workaround for the line number limit.
 
-void	ft_if_neg(int *size, long *nbr)
+void	ft_if_neg(long *size, long *nbr)
 {
 	(*size)++;
 	*nbr *= -1;
@@ -76,9 +76,9 @@ void	ft_if_neg(int *size, long *nbr)
 
 char	*ft_itoa(int n)
 {
-	int		size;
-	char	*ret;
-	long	nbr;
+	long		size;
+	char		*ret;
+	long		nbr;
 
 	nbr = n;
 	size = 0;
@@ -104,12 +104,6 @@ char	*ft_itoa(int n)
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
-}
-
-void	ft_putchar_n(char c, int *count)
-{
-	write(1, &c, 1);
-	*count += 1;
 }
 
 void	ft_putstr(char *str)
@@ -237,13 +231,10 @@ char	*ft_to_pointer(unsigned long p)
 
 char	*ft_utoa(unsigned int n)
 {
-	int		size;
-	char	*ret;
+	long		size;
+	char		*ret;
 
-	size = 0;
-	if (n < 0)
-		n *= -1;
-	size = size + ft_count_digits(n);
+	size = ft_count_digits(n);
 	ret = (char *)malloc(sizeof(*ret) * (size + 1));
 	if (!ret)
 		return (NULL);
