@@ -106,6 +106,12 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
+void	ft_putchar_n(char c, int *count)
+{
+	write(1, &c, 1);
+	*count += 1;
+}
+
 void	ft_putstr(char *str)
 {
 	while (*str)
