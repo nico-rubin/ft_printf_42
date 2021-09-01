@@ -13,46 +13,6 @@ t_list	ft_flags(void)
 	return (flags);
 }
 
-// Parses through format string to fill flags structure with information.
-char	*ft_parser(char *format, t_list *flags, va_list args)
-{
-	format++;
-	while (*format == '-' || *format == '0')
-	{
-		if (*format == '-')
-			flags->minus = 1;
-		if (*format == '0')
-			flags->zero = 1;
-		format++;
-	}
-	if (*format == '*')
-	{
-		flags->width = va_arg(args, int);
-		format++;
-	}
-	while (*format >= '0' && *format <= '9')
-	{
-		flags->width = flags->width * 10 + *format - '0';
-		format++;
-	}
-	if (*format == '.')
-	{
-		flags->dot = 0;
-		format++;
-	}
-	if (*format == '*')
-	{
-		flags->dot = va_arg(args, int);
-		format++;
-	}
-	while (*format >= '0' && *format <= '9')
-	{
-		flags->dot = flags->dot * 10 + *format - '0';
-		format++;
-	}
-	return (format);
-}
-
 // Calls the correct depending or conversion type.
 int	ft_printer(char *format, t_list flags, va_list args)
 {
@@ -88,20 +48,18 @@ int	ft_manager(char *format, va_list args)
 		if (*format == '%' && *(format + 1) == '%')
 		{
 			ft_putchar_n(*format, &count);
-			format += 2;
+			format++;
 		}
 		else if (*format == '%')
 		{
+			format++;
 			format = ft_parser(format, &flags, args);
 			count += ft_printer(format, flags, args);
 			flags = ft_flags();
-			format++;
 		}
 		else
-		{
 			ft_putchar_n(*format, &count);
-			format++;
-		}
+		format++;
 	}
 	return (count);
 }

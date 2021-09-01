@@ -8,7 +8,11 @@ SRC	=	helpers/char_helper.c\
 		helpers/string_helper.c\
 		helpers/unsigned_helper.c\
 		helpers/up_hex_helper.c\
-		utils.c\
+		utils/utils.c\
+		utils/utils2.c\
+		utils/utils3.c\
+		utils/utils4.c\
+		parsing/parser.c\
 		ft_printf.c
 
 OBJ	=	$(SRC:.c=.o)

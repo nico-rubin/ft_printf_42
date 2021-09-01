@@ -1,16 +1,5 @@
 #include "../includes/libftprintf.h"
 
-// Correctly positions the '-' symbol when 'n' is negative and there is a
-// precison.
-void	ft_sort(char *ret)
-{
-	*ret = '-';
-	ret++;
-	while (*ret != '-')
-		ret++;
-	*ret = '0';
-}
-
 // Handles exceptional flag cases.
 void	ft_int_exceptions(t_list *flags, int n)
 {

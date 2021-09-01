@@ -49,5 +49,8 @@ int		ft_print_unsigned(t_list flags, va_list args);
 void	ft_unsigned_exceptions(t_list *flags, unsigned int n);
 int		ft_atoi(const char *str);
 int		ft_print_percent(t_list flags);
+void	ft_sort(char *ret);
+char	*ft_parser(char *format, t_list *flags, va_list args);
+int		ft_printf(const char *str, ...);
 
 #endif
