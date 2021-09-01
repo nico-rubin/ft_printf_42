@@ -52,5 +52,6 @@ int		ft_print_percent(t_list flags);
 void	ft_sort(char *ret);
 char	*ft_parser(char *format, t_list *flags, va_list args);
 int		ft_printf(const char *str, ...);
+int		ft_zero_zero(void);
 
 #endif

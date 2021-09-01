@@ -66,12 +66,9 @@ int	ft_char_is_zero(t_list flags)
 	int		i;
 
 	i = 0;
+	ret = NULL;
 	if (flags.width == 0 && flags.minus == 0)
-	{
-		ret = NULL;
-		ft_putchar(0);
-		return (1);
-	}
+		return (ft_zero_zero());
 	ret = (char *)malloc(sizeof(*ret) * flags.width);
 	while (i < flags.width - 1)
 		ret[i++] = ' ';

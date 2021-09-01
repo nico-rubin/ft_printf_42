@@ -80,3 +80,9 @@ void	ft_sort(char *ret)
 		ret++;
 	*ret = '0';
 }
+
+int	ft_zero_zero(void)
+{
+	ft_putchar(0);
+	return (1);
+}
