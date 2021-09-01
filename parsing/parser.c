@@ -6,12 +6,13 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:12 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:38:13 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/01 14:48:45 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
 
+// Parses through the format string filling the width flag.
 char	*width(char *format, t_list *flags)
 {
 	while (*format >= '0' && *format <= '9')
@@ -22,6 +23,7 @@ char	*width(char *format, t_list *flags)
 	return (format);
 }
 
+// Same as above but when * is used.
 char	*flag_width(char *format, t_list *flags, va_list args)
 {
 	flags->width = va_arg(args, int);
@@ -29,6 +31,7 @@ char	*flag_width(char *format, t_list *flags, va_list args)
 	return (format);
 }
 
+// Parses throguh the format string filling the precision flag.
 char	*dot(char *format, t_list *flags)
 {
 	while (*format >= '0' && *format <= '9')
@@ -39,6 +42,7 @@ char	*dot(char *format, t_list *flags)
 	return (format);
 }
 
+// Same as above but when * is used.
 char	*flag_dot(char *format, t_list *flags, va_list args)
 {
 	flags->dot = va_arg(args, int);

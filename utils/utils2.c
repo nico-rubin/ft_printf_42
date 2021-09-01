@@ -6,12 +6,13 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:20 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:38:21 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/01 14:52:38 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
 
+// Counts how many digits are in an long.
 long	ft_count_digits(long n)
 {
 	long	i;
@@ -27,8 +28,7 @@ long	ft_count_digits(long n)
 	return (i);
 }
 
-// Workaround for the line number limit.
-
+// Helper for ft_itoa.
 void	ft_if_neg(long *size, long *nbr)
 {
 	(*size)++;
@@ -37,7 +37,6 @@ void	ft_if_neg(long *size, long *nbr)
 
 // Allocates (with malloc(3)) and returns a string representing the integer
 // received as an argument. It handles negative numbers.
-
 char	*ft_itoa(int n)
 {
 	long		size;
@@ -65,11 +64,13 @@ char	*ft_itoa(int n)
 	return (ret);
 }
 
+// Writes a single char.
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
+// Writes a single char while updating the count.
 void	ft_putchar_n(char c, int *count)
 {
 	write(1, &c, 1);

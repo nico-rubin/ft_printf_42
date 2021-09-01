@@ -6,12 +6,13 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:26 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:38:27 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/01 14:56:33 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
 
+// Converts to pointer.
 char	*ft_to_pointer(unsigned long p)
 {
 	int		remainder;
@@ -39,6 +40,7 @@ char	*ft_to_pointer(unsigned long p)
 	return (ret);
 }
 
+// Converts unsigned int to a string.
 char	*ft_utoa(unsigned int n)
 {
 	long		size;
@@ -59,6 +61,7 @@ char	*ft_utoa(unsigned int n)
 	return (ret);
 }
 
+// Converts a string to an int.
 int	ft_atoi(const char *str)
 {
 	int	res;
@@ -93,6 +96,7 @@ void	ft_sort(char *ret)
 	*ret = '0';
 }
 
+// Helper in case a char is 0 and width and left align are 0.
 int	ft_zero_zero(void)
 {
 	ft_putchar(0);

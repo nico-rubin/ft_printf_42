@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:44 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:36:48 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/01 14:46:00 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ t_list	ft_flags(void)
 	flags.minus = 0;
 	flags.zero = 0;
 	flags.dot = -1;
-	flags.count = 0;
 	return (flags);
 }
 
-// Calls the correct depending or conversion type.
+// Calls the correct printf function depending on conversion type.
 int	ft_printer(char *format, t_list flags, va_list args)
 {
 	if (*format == 'i' || *format == 'd')
@@ -48,6 +47,7 @@ int	ft_printer(char *format, t_list flags, va_list args)
 		return (0);
 }
 
+// Advances through format string until a format identifier is found.
 int	ft_manager(char *format, va_list args)
 {
 	int		count;

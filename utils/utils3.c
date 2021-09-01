@@ -6,18 +6,20 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:23 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:38:24 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/01 14:54:07 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libftprintf.h"
 
+// Writes a string.
 void	ft_putstr(char *str)
 {
 	while (*str)
 		ft_putchar(*(str++));
 }
 
+// Converts a char into a null ended string containing the single char.
 char	*ft_char_to_str(char c)
 {
 	char	*ret;
@@ -30,6 +32,7 @@ char	*ft_char_to_str(char c)
 	return (ret);
 }
 
+// Flips a string around.
 void	ft_flip(char *str)
 {
 	char	tmp;
@@ -50,6 +53,7 @@ void	ft_flip(char *str)
 	}
 }
 
+// Converts an integer to lowercase hexadecimal.
 char	*ft_to_low_hex(int n)
 {
 	unsigned int	nbr;
@@ -79,6 +83,7 @@ char	*ft_to_low_hex(int n)
 	return (ret);
 }
 
+// Converts an integer to uppercase hexadecimal.
 char	*ft_to_up_hex(int n)
 {
 	unsigned int	nbr;

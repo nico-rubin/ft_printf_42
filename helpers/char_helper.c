@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:36:59 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/01 14:46:53 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_char_exceptions(t_list *flags)
 		flags->zero = 0;
 }
 
-// Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
+// Adds padding to 'str' when length of 'str' is smaller than 'flags.width' and
 // the result is right aligned.
 char	*ft_char_right_width(char *str, t_list flags)
 {
@@ -72,6 +72,7 @@ char	*ft_char_left_width(char *str, t_list flags)
 	return (ret);
 }
 
+// Handles exceptional case when char is 0.
 int	ft_char_is_zero(t_list flags)
 {
 	char	*ret;
