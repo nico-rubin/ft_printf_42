@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:07 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 12:17:28 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 13:40:53 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ char	*ft_int_with_precision(int n, char *str, t_list flags)
 	diff = flags.dot - len;
 	if (n < 0)
 		diff++;
-	str = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < diff)
 		ret[i++] = '0';
 	while (i < diff + len)
@@ -116,7 +116,6 @@ int	ft_print_int(t_list flags, va_list args)
 {
 	int		n;
 	char	*str;
-	int		len;
 
 	n = va_arg(args, int);
 	str = ft_itoa(n);
@@ -130,7 +129,5 @@ int	ft_print_int(t_list flags, va_list args)
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_int_left_width(str, flags);
 	ft_putstr(str);
-	len = ft_strlen(str);
-	free(str);
-	return (len);
+	return (ft_strlen(str));
 }
