@@ -108,7 +108,8 @@ int		main()
 	int res1;
 	int res2;
 	int	*ptr;
-	
+
+/*	
 	ptr = &res1;
 	printt("[ 0 - TESTS SUR LES CHAR ]");
 	printst("6c  c='a'");
@@ -123,7 +124,7 @@ int		main()
 	res1 = ft_printf("[%-5c]\n", '\x00');
 	res2 = printf("[%-5c]\n", '\x00');
 	error(res1, res2);
-
+	
 	printt("\n\n[ 1 - TESTS SUR LES STRINGS ]");
 	printst("-2s  s=bonjour");
 	res1 = ft_printf("[%-2s]\n", "bonjour");
@@ -325,7 +326,8 @@ int		main()
 	res1 = ft_printf("[%.2u]\n", 125);
 	res2 = printf("[%.2u]\n", 125);
 	error(res1, res2);
-	
+
+	*/	
 	printt("\n\n[ 6 - TESTS SUR LES INT hex ]");
 	printst("-5x  x = 125");
 	res1 = ft_printf("[%-5x]\n", 125);
@@ -345,13 +347,14 @@ int		main()
 	res1 = ft_printf("[%-5X]\n", -125);
 	res2 = printf("[%-5X]\n", -125);
 	error(res1, res2);
-	
+
+	/*	
 	printt("\n\n[ 8 - TESTS SUR LES PCT ]");
 	printst("%%");
 	res1 = ft_printf("[%%]\n", 125);
 	res2 = printf("[%%]\n", 125);
 	error(res1, res2);
-
 	test_errors_mac();
+	*/
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:16 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 16:09:25 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 17:04:32 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,13 @@ int	ft_print_percent(t_list flags)
 {
 	char	*str;
 	int		len;
-	char	*tmp;
 
 	str = ft_strdup("%");
 	ft_percent_exceptions(&flags);
 	if (flags.width > 0 && flags.minus == 0)
-	{
-		tmp = ft_percent_right_width(str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_percent_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1)
-	{
-		tmp = ft_percent_left_width(str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_percent_left_width(str, flags);
 	ft_putstr(str);
 	len = ft_strlen(str);
 	free(str);

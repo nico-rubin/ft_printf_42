@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:49 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 16:43:52 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 17:36:08 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ char	*ft_str_with_precision(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
-
+	
 	i = 0;
 	len = flags.dot;
 	ret = (char *)malloc(sizeof(*ret) * (len + 1));
 	ret[len] = '\0';
 	while (len--)
 		ret[len] = str[len];
-	flags.free = 1;
+	free(str);
 	return (ret);
 }
 
@@ -51,7 +51,9 @@ char	*ft_str_right_width(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
+	char	*tmp;
 
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.width - len;
@@ -63,9 +65,9 @@ char	*ft_str_right_width(char *str, t_list flags)
 		while (i < diff)
 			ret[i++] = ' ';
 	while (i < diff + len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++); // is this an issue
 	ret[i] = '\0';
-	flags.free = 1;
+	free(str);
 	return (ret);
 }
 
@@ -77,17 +79,19 @@ char	*ft_str_left_width(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
+	char	*tmp;
 
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.width - len;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++); // change to tmp
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
-	flags.free = 1;
+	free(str);
 	return (ret);
 }
 
@@ -95,10 +99,14 @@ char	*ft_str_left_width(char *str, t_list flags)
 int	ft_print_str(t_list flags, va_list args)
 {
 	char	*str;
+	char	*s;
+	int		len;
 
-	str = va_arg(args, char *);
-	if (str == NULL)
+	s = va_arg(args, char *);
+	if (s == NULL)
 		str = ft_strdup("(null)");
+	else
+		str = ft_strdup(s);
 	ft_str_exceptions(&flags);
 	if (flags.dot > -1)
 		str = ft_str_with_precision(str, flags);
@@ -107,5 +115,7 @@ int	ft_print_str(t_list flags, va_list args)
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_str_left_width(str, flags);
 	ft_putstr(str);
-	return (ft_strlen(str));
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }

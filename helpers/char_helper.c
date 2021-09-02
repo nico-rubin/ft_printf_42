@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 16:39:27 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 17:17:22 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ char	*ft_char_right_width(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
+	char	*tmp;
 
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.width - len;
@@ -46,8 +48,9 @@ char	*ft_char_right_width(char *str, t_list flags)
 		while (i < diff)
 			ret[i++] = ' ';
 	while (i < diff + len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++);
 	ret[i] = '\0';
+	free(str);
 	return (ret);
 }
 
@@ -59,16 +62,19 @@ char	*ft_char_left_width(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
+	char	*tmp;
 
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.width - len;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++);
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
+	free(str);
 	return (ret);
 }
 
@@ -106,7 +112,6 @@ int	ft_print_char(t_list flags, va_list args)
 	char	c;
 	char	*str;
 	int		len;
-	char	*tmp;
 
 	c = va_arg(args, int);
 	if (c == 0)
@@ -114,19 +119,9 @@ int	ft_print_char(t_list flags, va_list args)
 	str = ft_char_to_str(c);
 	ft_char_exceptions(&flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
-	{
-		tmp = ft_char_right_width(str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_char_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
-	{
-		tmp = ft_char_left_width(str, flags);
-		free(str);
-		str = ft_strdup(tmp);
-		free(tmp);
-	}
+		str = ft_char_left_width(str, flags);
 	ft_putstr(str);
 	len = ft_strlen(str);
 	free(str);
