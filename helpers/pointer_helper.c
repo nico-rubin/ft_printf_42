@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:45 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:37:47 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 12:07:35 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	ft_print_pointer(t_list flags, va_list args)
 {
 	void	*p;
 	char	*str;
+	int		len;
 
 	p = va_arg(args, void *);
 	if (p == NULL)
@@ -111,5 +112,7 @@ int	ft_print_pointer(t_list flags, va_list args)
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_pointer_left_width(str, flags);
 	ft_putstr(str);
-	return (ft_strlen(str));
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }

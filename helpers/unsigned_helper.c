@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:37:57 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 12:08:38 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	ft_print_unsigned(t_list flags, va_list args)
 {
 	unsigned int	n;
 	char			*str;
+	int				len;
 
 	n = (unsigned int)va_arg(args, int);
 	str = ft_utoa(n);
@@ -123,5 +124,7 @@ int	ft_print_unsigned(t_list flags, va_list args)
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
 		str = ft_unsigned_left_width(str, flags);
 	ft_putstr(str);
-	return (ft_strlen(str));
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }
