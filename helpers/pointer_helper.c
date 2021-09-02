@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:45 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 13:29:30 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 16:09:46 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int	ft_print_pointer(t_list flags, va_list args)
 {
 	void	*p;
 	char	*str;
+	int		len;
+	char	*tmp;
 
 	p = va_arg(args, void *);
 	if (p == NULL)
@@ -105,11 +107,28 @@ int	ft_print_pointer(t_list flags, va_list args)
 		str = ft_to_pointer((unsigned long)p);
 	ft_pointer_exceptions(&flags);
 	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
-		str = ft_pointer_with_precision(str, flags);
+	{
+		tmp = ft_pointer_with_precision(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
-		str = ft_pointer_right_width(str, flags);
+	{
+		tmp	= ft_pointer_right_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
-		str = ft_pointer_left_width(str, flags);
+	{
+		tmp = ft_pointer_left_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	ft_putstr(str);
-	return (ft_strlen(str));
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }

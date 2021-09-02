@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:04 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:43:31 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 14:12:55 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_list
 	int	minus;
 	int	zero;
 	int	dot;
+	int	free;
 }				t_list;
 
 char	*ft_strdup(const char *s1);

@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 13:29:51 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 16:10:11 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,18 +110,37 @@ int	ft_print_unsigned(t_list flags, va_list args)
 {
 	unsigned int	n;
 	char			*str;
-
+	int				len;
+	char			*tmp;
+	
 	n = (unsigned int)va_arg(args, int);
-	str = ft_utoa(n);
 	ft_unsigned_exceptions(&flags, n);
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
+	str = ft_utoa(n);
 	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
-		str = ft_unsigned_with_precision(str, flags);
+	{
+		tmp = ft_unsigned_with_precision(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
-		str = ft_unsigned_right_width(str, flags);
+	{
+		tmp = ft_unsigned_right_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
-		str = ft_unsigned_left_width(str, flags);
+	{
+		tmp = ft_unsigned_left_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}	
 	ft_putstr(str);
-	return (ft_strlen(str));
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }

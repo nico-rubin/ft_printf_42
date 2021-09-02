@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:44 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:46:00 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 14:12:43 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list	ft_flags(void)
 	flags.minus = 0;
 	flags.zero = 0;
 	flags.dot = -1;
+	flags.free = 0;
 	return (flags);
 }
 

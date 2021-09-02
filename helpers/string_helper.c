@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:49 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 13:29:39 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 16:43:52 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char	*ft_str_with_precision(char *str, t_list flags)
 	ret[len] = '\0';
 	while (len--)
 		ret[len] = str[len];
+	flags.free = 1;
 	return (ret);
 }
 
@@ -64,6 +65,7 @@ char	*ft_str_right_width(char *str, t_list flags)
 	while (i < diff + len)
 		ret[i++] = *(str++);
 	ret[i] = '\0';
+	flags.free = 1;
 	return (ret);
 }
 
@@ -85,6 +87,7 @@ char	*ft_str_left_width(char *str, t_list flags)
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
+	flags.free = 1;
 	return (ret);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:00 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 13:27:58 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 16:10:34 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ int	ft_print_up_hex(t_list flags, va_list args)
 {
 	int		n;
 	char	*str;
+	int		len;
+	char	*tmp;
 
 	n = va_arg(args, int);
 	str = ft_to_up_hex(n);
@@ -117,11 +119,28 @@ int	ft_print_up_hex(t_list flags, va_list args)
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
 	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
-		str = ft_up_hex_with_precision(str, flags);
+	{
+		tmp = ft_up_hex_with_precision(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
-		str = ft_up_hex_right_width(str, flags);
+	{
+		tmp = ft_up_hex_right_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
-		str = ft_up_hex_left_width(str, flags);
+	{
+		tmp = ft_up_hex_left_width(str, flags);
+		free(str);
+		str = ft_strdup(tmp);
+		free(tmp);
+	}
 	ft_putstr(str);
-	return (ft_strlen(str));
+	len = ft_strlen(str);
+	free(str);
+	return (len);
 }

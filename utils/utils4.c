@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:26 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:56:33 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 16:01:03 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char	*ft_to_pointer(unsigned long p)
 	stock[i++] = '0';
 	stock[i++] = '\0';
 	ft_flip(stock);
-	ret = (char *)malloc(sizeof(*ret) * (ft_strlen(stock) + 1));
 	ret = ft_strdup(stock);
 	return (ret);
 }
