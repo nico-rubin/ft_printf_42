@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:07 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 17:43:22 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 18:12:09 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*ft_int_left_width(char *str, t_list flags)
 	diff = flags.width - len;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++);
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';

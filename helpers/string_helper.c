@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:49 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 17:36:08 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 18:20:59 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_str_with_precision(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
-	
+
 	i = 0;
 	len = flags.dot;
 	ret = (char *)malloc(sizeof(*ret) * (len + 1));
@@ -65,7 +65,7 @@ char	*ft_str_right_width(char *str, t_list flags)
 		while (i < diff)
 			ret[i++] = ' ';
 	while (i < diff + len)
-		ret[i++] = *(tmp++); // is this an issue
+		ret[i++] = *(tmp++);
 	ret[i] = '\0';
 	free(str);
 	return (ret);
@@ -87,7 +87,7 @@ char	*ft_str_left_width(char *str, t_list flags)
 	diff = flags.width - len;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < len)
-		ret[i++] = *(tmp++); // change to tmp
+		ret[i++] = *(tmp++);
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
