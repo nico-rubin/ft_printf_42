@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:00 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 17:06:08 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/02 18:02:16 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ char	*ft_up_hex_with_precision(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
+	char	*tmp;
 
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.dot - len;
@@ -54,8 +56,9 @@ char	*ft_up_hex_with_precision(char *str, t_list flags)
 	while (i < diff)
 		ret[i++] = '0';
 	while (i < diff + len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++);
 	ret[i] = '\0';
+	free(str);
 	return (ret);
 }
 
@@ -67,7 +70,9 @@ char	*ft_up_hex_right_width(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
-
+	char	*tmp;
+	
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.width - len;
@@ -79,8 +84,9 @@ char	*ft_up_hex_right_width(char *str, t_list flags)
 		while (i < diff)
 			ret[i++] = ' ';
 	while (i < diff + len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++);
 	ret[i] = '\0';
+	free(str);
 	return (ret);
 }
 
@@ -92,16 +98,19 @@ char	*ft_up_hex_left_width(char *str, t_list flags)
 	char	*ret;
 	int		i;
 	int		len;
+	char	*tmp;
 
+	tmp = str;
 	i = 0;
 	len = ft_strlen(str);
 	diff = flags.width - len;
 	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
 	while (i < len)
-		ret[i++] = *(str++);
+		ret[i++] = *(tmp++);
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
+	free(str);
 	return (ret);
 }
 
@@ -113,10 +122,10 @@ int	ft_print_up_hex(t_list flags, va_list args)
 	int		len;
 
 	n = va_arg(args, int);
-	str = ft_to_up_hex(n);
 	ft_up_hex_exceptions(&flags, n);
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
+	str = ft_to_up_hex(n);
 	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
 		str = ft_up_hex_with_precision(str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
