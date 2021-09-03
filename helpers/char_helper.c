@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/03 14:27:28 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 14:36:05 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	ft_char_is_zero(t_list flags)
 	ret = NULL;
 	if (flags.width == 0 && flags.minus == 0)
 		return (ft_zero_zero());
-	ret = (char *)malloc(sizeof(*ret) * flags.width + 1);
+	ret = (char *)malloc(sizeof(*ret) * (flags.width + 1));
 	while (i < flags.width - 1)
 		ret[i++] = ' ';
 	ret[i] = 0;
