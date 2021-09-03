@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:23 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 18:22:15 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 10:46:36 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_to_low_hex(int n)
 	char			stock[50];
 	char			*ret;
 	int				i;
-	
+
 	nbr = (unsigned int)n;
 	i = 0;
 	if (nbr == 0)

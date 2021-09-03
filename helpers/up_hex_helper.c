@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:00 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 18:22:32 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 10:46:20 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_up_hex_right_width(char *str, t_list flags)
 	int		i;
 	int		len;
 	char	*tmp;
-	
+
 	tmp = str;
 	i = 0;
 	len = ft_strlen(str);

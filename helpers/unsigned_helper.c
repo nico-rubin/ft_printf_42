@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 18:22:44 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 10:45:25 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	ft_print_unsigned(t_list flags, va_list args)
 	unsigned int	n;
 	char			*str;
 	int				len;
-	
+
 	n = (unsigned int)va_arg(args, int);
 	ft_unsigned_exceptions(&flags, n);
 	if (flags.dot == 0 && n == 0)

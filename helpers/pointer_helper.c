@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:45 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 18:20:05 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 11:10:00 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,16 @@ int	ft_print_pointer(t_list flags, va_list args)
 	int		len;
 
 	p = va_arg(args, void *);
+	ft_pointer_exceptions(&flags);
 	if (p == NULL)
-		str = ft_strdup("0x0");
+	{
+		if (flags.dot > -1)
+			str = ft_strdup("0x");
+		else
+			str = ft_strdup("0x0");
+	}
 	else
 		str = ft_to_pointer((unsigned long)p);
-	ft_pointer_exceptions(&flags);
 	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
 		str = ft_pointer_with_precision(str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
