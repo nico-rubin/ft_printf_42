@@ -6,7 +6,7 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:07 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 18:12:09 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 12:16:45 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int	ft_print_int(t_list flags, va_list args)
 	if (flags.dot == 0 && n == 0)
 		return (flags.width);
 	str = ft_itoa(n);
-	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
+	if (flags.dot > -1 && ft_strlen(str) <= flags.dot)
 		str = ft_int_with_precision(n, str, flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_int_right_width(n, str, flags);
