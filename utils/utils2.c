@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:20 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:52:38 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:58:27 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Counts how many digits are in an long.
 long	ft_count_digits(long n)

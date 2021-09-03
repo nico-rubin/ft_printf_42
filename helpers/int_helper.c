@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:07 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/03 12:16:45 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:57:08 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Handles exceptional flag cases.
 void	ft_int_exceptions(t_list *flags, int n)
@@ -63,7 +63,6 @@ char	*ft_int_with_precision(int n, char *str, t_list flags)
 	if (n < 0)
 		ft_sort(ret);
 	free(str);
-	flags.free = 1;
 	return (ret);
 }
 
@@ -94,7 +93,6 @@ char	*ft_int_right_width(int n, char *str, t_list flags)
 	if (flags.zero == 1 && n < 0)
 		ft_sort(ret);
 	free(str);
-	flags.free = 1;
 	return (ret);
 }
 
@@ -118,7 +116,6 @@ char	*ft_int_left_width(char *str, t_list flags)
 	while (i < diff + len)
 		ret[i++] = ' ';
 	ret[i] = '\0';
-	flags.free = 1;
 	free(str);
 	return (ret);
 }

@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:44 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 14:12:43 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:56:29 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libftprintf.h"
+#include "includes/ft_printf.h"
 
 // Initializes flag structure.
 t_list	ft_flags(void)
@@ -21,7 +21,6 @@ t_list	ft_flags(void)
 	flags.minus = 0;
 	flags.zero = 0;
 	flags.dot = -1;
-	flags.free = 0;
 	return (flags);
 }
 

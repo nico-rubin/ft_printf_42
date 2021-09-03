@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:23 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/03 12:09:14 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:58:33 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Writes a string.
 void	ft_putstr(char *str)

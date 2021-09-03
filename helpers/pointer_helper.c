@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:37:45 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/03 11:10:00 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:57:23 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Handles exceptional flag cases.
 void	ft_pointer_exceptions(t_list *flags)

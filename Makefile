@@ -6,7 +6,7 @@
 #    By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/01 14:38:46 by nrubin            #+#    #+#              #
-#    Updated: 2021/09/01 14:38:47 by nrubin           ###   ########.fr        #
+#    Updated: 2021/09/03 13:52:20 by nrubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC	=	helpers/char_helper.c\
 		utils/utils2.c\
 		utils/utils3.c\
 		utils/utils4.c\
+		utils/utils5.c\
 		parsing/parser.c\
 		ft_printf.c
 

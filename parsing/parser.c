@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:12 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:48:45 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:57:47 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Parses through the format string filling the width flag.
 char	*width(char *format, t_list *flags)

@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:16 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/01 14:50:41 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 14:04:26 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Counts lenght of string.
 int	ft_strlen(const char *s)

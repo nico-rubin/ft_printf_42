@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:38:04 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 14:12:55 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 14:03:09 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
 
-# define LIBFTPRINTF_H
+# define FT_PRINTF_H
 
 # include <stdlib.h>
 # include <string.h>
@@ -30,7 +30,6 @@ typedef struct s_list
 	int	minus;
 	int	zero;
 	int	dot;
-	int	free;
 }				t_list;
 
 char	*ft_strdup(const char *s1);
@@ -65,5 +64,6 @@ void	ft_sort(char *ret);
 char	*ft_parser(char *format, t_list *flags, va_list args);
 int		ft_printf(const char *str, ...);
 int		ft_zero_zero(void);
+void	ft_zero_putchar(char c, t_list *flags);
 
 #endif

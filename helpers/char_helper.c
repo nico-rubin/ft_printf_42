@@ -6,11 +6,11 @@
 /*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 14:36:55 by nrubin            #+#    #+#             */
-/*   Updated: 2021/09/02 18:06:07 by nrubin           ###   ########.fr       */
+/*   Updated: 2021/09/03 13:56:57 by nrubin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libftprintf.h"
+#include "../includes/ft_printf.h"
 
 // Handles exceptional flag cases.
 void	ft_char_exceptions(t_list *flags)
@@ -97,11 +97,13 @@ int	ft_char_is_zero(t_list flags)
 		ft_putstr(ret);
 		ft_putchar(0);
 	}
-	if (flags.width > 0 && flags.minus > 0)
+	else if (flags.width > 0 && flags.minus > 0)
 	{
 		ft_putchar(0);
 		ft_putstr(ret);
 	}
+	else
+		ft_zero_putchar(0, &flags);
 	free(ret);
 	return (flags.width);
 }
@@ -114,10 +116,10 @@ int	ft_print_char(t_list flags, va_list args)
 	int		len;
 
 	c = va_arg(args, int);
+	ft_char_exceptions(&flags);
 	if (c == 0)
 		return (ft_char_is_zero(flags));
 	str = ft_char_to_str(c);
-	ft_char_exceptions(&flags);
 	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
 		str = ft_char_right_width(str, flags);
 	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
