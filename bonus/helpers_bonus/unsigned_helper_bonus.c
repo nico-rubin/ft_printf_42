@@ -1,0 +1,139 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unsigned_helper_bonus.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/01 14:37:55 by nrubin            #+#    #+#             */
+/*   Updated: 2021/09/03 15:12:34 by nrubin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes_bonus/ft_printf_bonus.h"
+
+// Handles exceptional flag cases.
+void	ft_unsigned_exceptions(t_list *flags, unsigned int n)
+{
+	char	*ret;
+	int		i;
+
+	if (flags->width < 0)
+	{
+		flags->width = flags->width * -1;
+		flags->minus = 1;
+	}
+	if (flags->dot > -1 && flags->zero == 1)
+		flags->zero = 0;
+	if (flags->zero == 1 && flags->minus == 1)
+		flags->zero = 0;
+	if (flags->dot == 0 && n == 0)
+	{
+		i = flags->width;
+		ret = (char *)malloc(sizeof(*ret) * (i + 1));
+		ret[i] = '\0';
+		while (i--)
+			ret[i] = ' ';
+		ft_putstr(ret);
+		free(ret);
+	}
+}
+
+// Adds '0' padding to 'str' when length of 'str' is smaller than 'flags.dot'.
+char	*ft_unsigned_with_precision(char *str, t_list flags)
+{
+	int		diff;
+	char	*ret;
+	int		i;
+	int		len;
+	char	*tmp;
+
+	tmp = str;
+	i = 0;
+	len = ft_strlen(str);
+	diff = flags.dot - len;
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	while (i < diff)
+		ret[i++] = '0';
+	while (i < diff + len)
+		ret[i++] = *(tmp++);
+	ret[i] = '\0';
+	free(str);
+	return (ret);
+}
+
+// Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
+// the result is right aligned.
+char	*ft_unsigned_right_width(char *str, t_list flags)
+{
+	int		diff;
+	char	*ret;
+	int		i;
+	int		len;
+	char	*tmp;
+
+	tmp = str;
+	i = 0;
+	len = ft_strlen(str);
+	diff = flags.width - len;
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	if (flags.zero == 1)
+		while (i < diff)
+			ret[i++] = '0';
+	else
+		while (i < diff)
+			ret[i++] = ' ';
+	while (i < diff + len)
+		ret[i++] = *(tmp++);
+	ret[i] = '\0';
+	free(str);
+	return (ret);
+}
+
+// Adds padding to 'str' when length of 'str'is smaller than 'flags.width' and
+// the result is left aligned.
+char	*ft_unsigned_left_width(char *str, t_list flags)
+{
+	int		diff;
+	char	*ret;
+	int		i;
+	int		len;
+	char	*tmp;
+
+	tmp = str;
+	i = 0;
+	len = ft_strlen(str);
+	diff = flags.width - len;
+	ret = (char *)malloc(sizeof(*ret) * (diff + len + 1));
+	while (i < len)
+		ret[i++] = *(tmp++);
+	while (i < diff + len)
+		ret[i++] = ' ';
+	ret[i] = '\0';
+	free(str);
+	return (ret);
+}
+
+// Main int printing function.
+int	ft_print_unsigned(t_list flags, va_list args)
+{
+	unsigned int	n;
+	char			*str;
+	int				len;
+
+	n = (unsigned int)va_arg(args, int);
+	ft_unsigned_exceptions(&flags, n);
+	if (flags.dot == 0 && n == 0)
+		return (flags.width);
+	str = ft_utoa(n);
+	if (flags.dot > -1 && ft_strlen(str) < flags.dot)
+		str = ft_unsigned_with_precision(str, flags);
+	if (flags.width > 0 && flags.minus == 0 && ft_strlen(str) < flags.width)
+		str = ft_unsigned_right_width(str, flags);
+	if (flags.width > 0 && flags.minus == 1 && ft_strlen(str) < flags.width)
+		str = ft_unsigned_left_width(str, flags);
+	ft_putstr(str);
+	len = ft_strlen(str);
+	free(str);
+	return (len);
+}
