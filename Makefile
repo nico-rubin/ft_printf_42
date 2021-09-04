@@ -6,7 +6,7 @@
 #    By: nrubin <nrubin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/01 14:38:46 by nrubin            #+#    #+#              #
-#    Updated: 2021/09/03 15:27:54 by nrubin           ###   ########.fr        #
+#    Updated: 2021/09/04 16:18:18 by nrubin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,25 +28,7 @@ SRC	=	helpers/char_helper.c\
 		parsing/parser.c\
 		ft_printf.c
 
-SRCBONUS =	bonus/helpers_bonus/char_helper_bonus.c\
-			bonus/helpers_bonus/int_helper_bonus.c\
-			bonus/helpers_bonus/low_hex_helper_bonus.c\
-			bonus/helpers_bonus/percent_helper_bonus.c\
-			bonus/helpers_bonus/pointer_helper_bonus.c\
-			bonus/helpers_bonus/string_helper_bonus.c\
-			bonus/helpers_bonus/unsigned_helper_bonus.c\
-			bonus/helpers_bonus/up_hex_helper_bonus.c\
-			bonus/utils_bonus/utils_bonus.c\
-			bonus/utils_bonus/utils2_bonus.c\
-			bonus/utils_bonus/utils3_bonus.c\
-			bonus/utils_bonus/utils4_bonus.c\
-			bonus/utils_bonus/utils5_bonus.c\
-			bonus/parsing_bonus/parser_bonus.c\
-			bonus/ft_printf_bonus.c
-
 OBJ	=	$(SRC:.c=.o)
-
-OBJBONUS =	$(SRCBONUS:.c=.o)
 
 CC	=	clang
 FLAGS	=	-Wall -Werror -Wextra
@@ -56,18 +38,15 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 			ar rc $(NAME) $(OBJ)
 
-bonus:	$(OBJBONUS)
-		ar rc $(NAME) $(OBJBONUS)
-
 %.o: %.c
 	$(CC) -I. -o $@ -c $? $(FLAGS)
 
 clean:
-	rm -f $(OBJ) $(OBJBONUS)
+	rm -f $(OBJ)
 
 fclean:	clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all make clean fclean re bonus
+.PHONY: all make clean fclean re
